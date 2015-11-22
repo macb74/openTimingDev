@@ -1,0 +1,206 @@
+<script>
+$('[data-toggle="tooltip"]').tooltip({container: "body"}); 
+
+
+$('.last-race-update').mouseenter(function(data){
+	var target = this;
+	var jqxhr = $.get( "getLastUpdate.php");
+	
+	jqxhr.success(function( data ) {
+		$( target ).tooltip( {container: 'body' } )
+			.attr('data-original-title', data)
+			.tooltip('fixTitle')
+			.tooltip('show');
+	});
+});
+</script>
+
+
+
+          <h2 class="page-header">Auswertung</h2>
+		
+		  <div class="table-responsive">
+			<table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Titel</th>
+                  <th>Start</th>
+                  <th>Laufwertung</th>
+                  <th>Startlisten</th>
+                  <th>Ergebnisse</th>
+                  <th>Urkunden</th>		  
+                </tr>
+              </thead>
+			  <tbody>
+                <tr>
+                  <td>78</td>
+                  <td>Hauptlauf / Oberbayerische Meisterschaft</td>
+                  <td>10:36:25</td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border last-race-update"><!--<i class="fa fa-cog"></i> --><i class="fa fa-clock-o"></i> Laufwertung</a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Bildschirmliste"><i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Name sortiert"><i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-alpha-asc"></i></a>
+						<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Startnummer sortiert"><i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-numeric-asc"></i></a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border" onclick="javascript:showContentTable('contentTable.html')"><i class="fa fa-male"></i> <i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-male"></i> <i class="fa fa-file-pdf-o"></i></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-male"></i><i class="fa fa-female"></i> <i class="fa fa-file-pdf-o"></i></a>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">					
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i> <i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i> <i class="fa fa-file-pdf-o"></i></i></a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user-times"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i></a>
+					</div>
+<!--
+					<div class="btn-group" role="group" aria-label="...">
+						<select class="form-control custom">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</div>
+-->					
+						<div class="btn-group" role="group">
+							<a class="btn btn-default btn-small-border dropdown-toggle" id="num-of-results-78" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">3&nbsp;&nbsp;&nbsp;&nbsp;
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a onclick="javascript:selectUrkundeResult(3, 78);">3</a></li>
+								<li><a onclick="javascript:selectUrkundeResult(6, 78);">6</a></li>
+								<li><a onclick="javascript:selectUrkundeResult('ALL', 78);">ALL</a></li>
+							</ul>
+						</div>
+				  </td>
+				</tr>
+                <tr>
+                  <td>78</td>
+                  <td>Hauptlauf / Oberbayerische Meisterschaft</td>
+                  <td>10:36:25</td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><!--<i class="fa fa-cog"></i> --><i class="fa fa-clock-o"></i> Laufwertung</a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-alpha-asc"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-numeric-asc"></i></a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user"></i> <i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user"></i> <i class="fa fa-file-pdf-o"></i></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user-times"></i> <i class="fa fa-file-pdf-o"></i></a>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">					
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i> <i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i> <i class="fa fa-file-pdf-o"></i></i></a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user-times"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i></a>
+					</div>
+<!--
+					<div class="btn-group" role="group" aria-label="...">
+						<select class="form-control custom">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</div>
+-->					
+						<div class="btn-group" role="group">
+							<a class="btn btn-default btn-small-border dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">3&nbsp;&nbsp;&nbsp;&nbsp;
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a onclick="javascript:selectUrkundeResult(3);">3</a></li>
+								<li><a onclick="javascript:selectUrkundeResult(6);">6</a></li>
+								<li><a onclick="javascript:selectUrkundeResult('ALL');">ALL</a></li>
+							</ul>
+						</div>
+				  </td>
+				</tr>
+                <tr>
+                  <td>78</td>
+                  <td>Hauptlauf / Oberbayerische Meisterschaft</td>
+                  <td>10:36:25</td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><!--<i class="fa fa-cog"></i> --><i class="fa fa-clock-o"></i> Laufwertung</a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-alpha-asc"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-numeric-asc"></i></a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user"></i> <i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user"></i> <i class="fa fa-file-pdf-o"></i></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user-times"></i> <i class="fa fa-file-pdf-o"></i></a>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">					
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i> <i class="fa fa-list"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i> <i class="fa fa-file-pdf-o"></i></i></a>
+					</div>
+				  </td>
+                  <td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-user-times"></i></a>
+						<a class="btn btn-default btn-small-border"><i class="fa fa-users"></i></a>
+					</div>
+<!--
+					<div class="btn-group" role="group" aria-label="...">
+						<select class="form-control custom">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</div>
+-->					
+						<div class="btn-group" role="group">
+							<a class="btn btn-default btn-small-border dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">3&nbsp;&nbsp;&nbsp;&nbsp;
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a onclick="javascript:selectUrkundeResult(3);">3</a></li>
+								<li><a onclick="javascript:selectUrkundeResult(6);">6</a></li>
+								<li><a onclick="javascript:selectUrkundeResult('ALL');">ALL</a></li>
+							</ul>
+						</div>
+				  </td>
+				</tr>					
+              </tbody>
+            </table>			
+          </div>
