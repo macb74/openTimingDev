@@ -139,3 +139,7 @@ body {
   height: 25px;
 }
 
+.clearfix {
+  clear: left;
+  height: 0px;
+}

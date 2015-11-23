@@ -32,6 +32,11 @@ if(array_search($func[0], $allowedFunctions) !== false) {
 	if (isset($_SESSION['vID']) || $func[0] == 'veranstaltung') {
 		$showContent = true;
 	}
+	
+	if (!isset($_SESSION['vID'])) {
+		$func[0] = 'veranstaltung';
+		$showContent = true;
+	}
 }
 
 if (!isset($_SESSION['vTitel']))      { $_SESSION['vTitel'] = ''; }
@@ -101,7 +106,7 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Teilnehmer <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Teilnehmerliste</a></li>
+							<li><a href="index.php?func=teilnehmer">Teilnehmerliste</a></li>
 							<li><a href="#">Teilnehmer Eingabe</a></li>
 							<li><a href="#">Teilnehmer Laden</a></li>
 						</ul>

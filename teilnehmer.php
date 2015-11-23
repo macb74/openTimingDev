@@ -6,32 +6,29 @@
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
 function teilnehmer() {
-	global $func;
-	$errmsg 	= "";
-	$zeit 		= '00:00:00';
-	$editError 	= 0;
-	$f = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+// 	$errmsg 	= "";
+// 	$zeit 		= '00:00:00';
+// 	$editError 	= 0;
+// 	$f = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 	
-	# insert / edit Teilnehmer
-	if (isset($_POST['submit']) || $func[1] == 'delete') {
-		$f = tInsertUpdate();
-		$editError = $f[13];
-	}
+// 	# insert / edit Teilnehmer
+// 	if (isset($_POST['submit']) || $func[1] == 'delete') {
+// 		$f = tInsertUpdate();
+// 		$editError = $f[13];
+// 	}
 
-	# display Form
-	if ($func[1] == "edit" || $func[1] == "insert" || $editError == 1) {
-		$f = tDisplayEditForm($f);
-	} else {
-		$f = tDisplayList($f);
-	}
+// 	# display Form
+// 	if ($func[1] == "edit" || $func[1] == "insert" || $editError == 1) {
+// 		$f = tDisplayEditForm($f);
+// 	} else {
+// 		$f = tDisplayList($f);
+// 	}
+
+	if (isset($_GET['id'])) { showTeilnehmerEditForm(); } else { showTeilnehmer(); }
 	
-	$html = $f[14];
-	$html .= "<div id='data_div'></div>";
-	return table("Teilnehmer", $html);
 }
 
-function tInsertUpdate( ) {
-	global $func;
+function saveTeilnehmer() {
 
 	$_SESSION['rID'] = $_POST['rID'];
 
@@ -76,41 +73,24 @@ function tInsertUpdate( ) {
 		if (!isset($func[1])) { $f[13] = 1; }
 	}
 
-	if ($func[0] == 'teilnehmer' && $func[1] == 'delete') {
-		$script = 'index.php?func=teilnehmer';
-		header('Location: '.$script);
-		die;
-	}
-
-	if (isset($_POST['nextUrl']) && ($_POST['nextUrl'] != '') && ($f[13] == 0)) {
-		$script = $_POST['nextUrl'];
-		header('Location: '.$script);
-		die;
-	}
-
 	return $f;
 }
 
-function tDisplayEditForm($f) {
-	global $func;
-	$html = "";
+function showTeilnehmerEditForm() {
 	
-	// wenn vorher kein Fehler war werden leere Felder angezeigt
-	if ($f[12] == "") {
-		$f[3] 	= '';
-		$f[4] 	= '';
-		$f[5]	= '';
-		$f[6] 	= '';
-		$f[7] 	= '';
-		$f[8] 	= '';
-		$f[9] 	= '';
-		$f[10]	= '00:00:00';
-		$f[11]	= '0';
-		$f[20] = '';
-	}
+	$f[3] 	= '';
+	$f[4] 	= '';
+	$f[5]	= '';
+	$f[6] 	= '';
+	$f[7] 	= '';
+	$f[8] 	= '';
+	$f[9] 	= '';
+	$f[10]	= '00:00:00';
+	$f[11]	= '0';
+	$f[20] = '';
 
-	if($func[1] == "edit") {
-		$sql = "select * from teilnehmer where ID = ".$_GET['ID'];
+	if($_GET['id'] != "new") {
+		$sql = "select * from teilnehmer where ID = ".$_GET['id'];
 		$result = dbRequest($sql, 'SELECT');
 
 		foreach ($result[0] as $row) {
@@ -140,12 +120,8 @@ function tDisplayEditForm($f) {
 	if(isset($_POST['nextUrl'])) { $nextUrl = $_POST['nextUrl']; }
 	if(isset($_GET['nextUrl'])) { $nextUrl = base64_decode($_GET['nextUrl']); }
 
-	if ($func[1] == 'insert') {
-		$html .="<form name=\"Formular\" method=\"POST\" action=\"?func=teilnehmer.insert\">\n";
-	} else {
-		$html .="<form name=\"Formular\" method=\"POST\" action=\"?func=teilnehmer\">\n";
-		if ($f[13] == 1) { $func[1] = "edit"; }
-	}
+	<form name=\"Formular\" method=\"POST\" action=\"?func=teilnehmer\">\n";
+
 	$html .="<input name=\"func\" type=\"hidden\" value=\"$func[1]\">\n";
 	$html .="<input name=\"tID\" type=\"hidden\" value=\"$f[2]\">\n";
 	$html .="<input name=\"nextUrl\" type=\"hidden\" value=\"$nextUrl\">\n";
@@ -339,47 +315,66 @@ function tDisplayEditForm($f) {
 	$html .="</div>\n";
 	$html .="</form>\n";
 
-	$f[14] = $html;
-	return $f;
 }
 
-function tDisplayList ($f)  {
-	$html = "";
-	if ($f[12] != "") {
-		$html .="	<div class=\"errorbox\" >\n";
-		$html .="		$f[12]\n";
-		$html .="	</div>\n";
-	}
+function showTeilnehmer()  {
 
 	$sql = "SELECT t.*, l.titel FROM `teilnehmer` as t INNER JOIN lauf as l ON t.lID = l.ID where t.vID = '".$_SESSION['vID']."' and del=0 order by nachname asc;";
 	$result = dbRequest($sql, 'SELECT');
 
-	$html2 = "";
-	$i=1;
+?>
+
+	<h3>Teilnehmer</h3>
+	<div class="table-responsive">
+		<table class="table table-striped table-condensed">
+			<thead>
+				<tr>
+					<th>Stnr.</th>
+					<th>Name</th>
+					<th>Verein</th>
+					<th>JG</th>
+					<th>G</th>
+					<th>Klasse</th>
+					<th>Rennen</th>
+					<th>Zeit</th>
+					<th>Platz</th>
+					<th>AK Platz</th>
+				</tr>
+			</thead>
+			<tbody>
+	
+<?php	
+		
 	if($result[1] > 0) {
 		foreach ($result[0] as $row) {
-			if($i%2 == 0) { $html2 .= "<tr class=\"even highlight\">\n"; } else { $html2 .= "<tr class=\"odd highlight\">\n"; }
-			$html2 .= "<td align=\"left\">".$row['stnr']."</td>\n";
-			$html2 .= "<td align=\"left\"><a href=\"".$_SERVER["SCRIPT_NAME"]."?func=teilnehmer.edit&ID=".$row['ID']."\">".$row['nachname'].", ".$row['vorname']."</a></td>\n";
-			$html2 .= "<td align=\"left\">".$row['verein']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['jahrgang']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['geschlecht']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['klasse']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['titel']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['zeit']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['platz']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['akplatz']."</td>\n";
-	
-			$html2 .= "</tr>\n";
-			$i++;
+
+?>
+
+				<tr>
+					<td><?php echo $row['stnr']; ?></td>
+					<td><a href="<?php echo $_SERVER["SCRIPT_NAME"]."?func=teilnehmer&id=".$row['ID'] ?>"><?php echo $row['nachname'].", ".$row['vorname'] ?></a></td>
+					<td><?php echo $row['verein']; ?></td>
+					<td><?php echo $row['jahrgang']; ?></td>
+					<td><?php echo $row['geschlecht']; ?></td>
+					<td><?php echo $row['klasse']; ?></td>
+					<td><?php echo $row['titel']; ?></td>
+					<td><?php echo $row['zeit']; ?></td>
+					<td><?php echo $row['platz']; ?></td>
+					<td><?php echo $row['akplatz']; ?></td>
+				</tr>
+
+<?php
+
 		}
 	}
 
-	$columns = array('Stnr', 'Name', 'Verein', 'JG', 'G', 'Klasse', 'Rennen', 'Zeit', 'Platz', 'AK Platz');
-	$html .= tableList($columns, $html2, "common");
+?>
 
-	$f[14] = $html;
-	return $f;
+			</tbody>
+		</table>
+	</div>
+
+<?php 
 }
 
 function getKlasse($jg, $sex, $rennen, $ajax) {

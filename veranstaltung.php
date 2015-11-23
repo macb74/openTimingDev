@@ -1,9 +1,7 @@
 <?php
 /*
- * Created on 06.11.2009
+ * Created on 23.11.2015
  *
- * To change the template for this generated file go to
- * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
 
 function veranstaltung() {
@@ -135,20 +133,20 @@ function veranstaltung() {
 			
 ?>
 
-			<tr>
-				<td><?php echo $row['ID'] ?></td>
-				<td><a class="veranstaltung-<?php echo $row['ID']." ".$b; ?>" href="#" onclick="javascript:selectVeranstaltung(<?php echo $row['ID']?>); return false;"><?php echo $row['titel']; ?></a></td>
-				<td><?php echo $row['untertitel']; ?></td>
-				<td><?php echo $row['datum']; ?></td>
-				<td><a type="button" class="btn btn-default btn-small-border" href="<?php echo $_SERVER["REQUEST_URI"]."&id=".$row['ID']; ?>"><i class="fa fa-wrench"></i></a></td>
-			</tr>
+				<tr>
+					<td><?php echo $row['ID'] ?></td>
+					<td><a class="veranstaltung-<?php echo $row['ID']." ".$b; ?>" href="#" onclick="javascript:selectVeranstaltung(<?php echo $row['ID']?>); return false;"><?php echo $row['titel']; ?></a></td>
+					<td><?php echo $row['untertitel']; ?></td>
+					<td><?php echo $row['datum']; ?></td>
+					<td><a type="button" class="btn btn-default btn-small-border" href="<?php echo $_SERVER["REQUEST_URI"]."&id=".$row['ID']; ?>"><i class="fa fa-wrench"></i></a></td>
+				</tr>
 			
 			
 <?php } ?>
 
-		</tbody>
-	</table>
-
+			</tbody>
+		</table>
+	</div>
 		
 <?php
 	}

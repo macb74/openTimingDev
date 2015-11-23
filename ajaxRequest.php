@@ -11,11 +11,13 @@ if(isset($_GET['func'])) {
 	if($_GET['func'] == 'lockRace')           		{ lockRace($_GET['lid']); }
 	if($_GET['func'] == 'addKlasse')           		{ addKlasse($_GET['id']); }
 	if($_GET['func'] == 'deleteKlasse')           	{ deleteKlasse($_GET['id']); }
+	if($_GET['func'] == 'deleteFullKlasse')			{ deleteFullKlasse(); }
 }
 
 if(isset($_POST['form'])) {
 	if($_POST['form'] == 'saveVeranstaltung')		{ saveVeranstaltung(); }
 	if($_POST['form'] == 'saveRennen')				{ saveRennen(); }
+	if($_POST['form'] == 'saveKlasse')				{ saveKlasse(); }
 }
 
 

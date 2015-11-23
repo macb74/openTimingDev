@@ -34,6 +34,7 @@ function lockRace($rennen) {
 function showRennen() {
 
 ?>
+
 	<h3>Veranstaltungen</h3>
 	<a type="button" href="index.php?func=rennen&id=new" class="btn btn-success pull-right btn-new-top">neues Rennen</a>
 	
@@ -65,23 +66,33 @@ function showRennen() {
 			
 ?>
 
-			<tr>
-				<td><?php echo $row['ID'] ?></td>
-				<td><?php echo $row['titel']; ?></td>
-				<td><?php echo $row['untertitel']; ?></td>
-				<td><?php echo $row['start']; ?></td>
-				<td>
-					<a type="button" class="btn btn-default btn-small-border" href="<?php echo $_SERVER["REQUEST_URI"]."&id=".$row['ID']; ?>">
-						<i class="fa fa-wrench"></i>
-					</a>
-					<a type="button" class="btn btn-default btn-small-border" onclick="javascript:lockRace(<?php echo $row['ID'];?>); return false;" href="">
-						<i id="lock-<?php echo $row['ID']; ?>" class="fa <?php echo $lockIcon; ?>"></i>
-					</a>
-				</td>
-			</tr>
+				<tr>
+					<td><?php echo $row['ID'] ?></td>
+					<td><?php echo $row['titel']; ?></td>
+					<td><?php echo $row['untertitel']; ?></td>
+					<td><?php echo $row['start']; ?></td>
+					<td>
+						<a type="button" class="btn btn-default btn-small-border" href="<?php echo $_SERVER["REQUEST_URI"]."&id=".$row['ID']; ?>">
+							<i class="fa fa-wrench"></i>
+						</a>
+						<a type="button" class="btn btn-default btn-small-border" onclick="javascript:lockRace(<?php echo $row['ID'];?>); return false;" href="">
+							<i id="lock-<?php echo $row['ID']; ?>" class="fa <?php echo $lockIcon; ?>"></i>
+						</a>
+					</td>
+				</tr>
 
 <?php
+
 		}
+		
+?>
+
+			</tbody>
+		</table>
+	</div>
+
+<?php
+
 	}
 	
 }

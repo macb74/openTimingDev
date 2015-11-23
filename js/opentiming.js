@@ -75,3 +75,15 @@ function deleteKlasse( id, kid ) {
 		}
 	});
 }
+
+function deleteFullKlasse( id ) {
+	var jqxhr = $.get( 'ajaxRequest.php?func=deleteFullKlasse&id=' + id );
+	jqxhr.success(function( data ) {
+		if(data == 'ok') {
+			window.location.href = 'index.php?func=klasse';
+		} else {
+			$('.alert').html(data);
+			$('.alert').removeClass('hidden');
+		}
+	});
+}
