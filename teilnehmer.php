@@ -46,7 +46,7 @@ function saveTeilnehmer() {
 				"values ( $f[0], $f[1], '$f[3]', '$f[4]', $f[7], '$f[5]', '$f[6]', '$f[8]', '$f[9]', '$f[10]','$f[10]', $f[16], $f[11], '$f[15]', $f[18], '$f[19]', '$f[20]')";			
 	}
 	
-	echo $sql;
+	//echo $sql;
 	$result = dbRequest($sql, 'INSERT');
 	if($result[2] == "") {
 		echo 'ok';
@@ -71,8 +71,8 @@ function showTeilnehmerEditForm() {
 		$zeit		= "00:00:00";
 		$disq		= "";
 		$id			= "";
-		$autRunden	= "";
-		$manRunden	= "";
+		$autRunden	= "0";
+		$manRunden	= "0";
 		$vKlasse	= "";
 		$att		= "";
 
@@ -132,7 +132,8 @@ function showTeilnehmerEditForm() {
 
 		function checkAndSubmit( form ) {
 		    var msg = '';
-			if( $('#vorname').val().length  < 2 ) { msg = msg + '<strong>Vorname</strong> darf nicht leer sein<br>'; }
+			if( $('#nachname').val().length  < 2 ) { msg = msg + '<strong>Nachname</strong> darf nicht leer sein<br>'; }
+		    if( $('#vorname').val().length  < 2 ) { msg = msg + '<strong>Vorname</strong> darf nicht leer sein<br>'; }
 			if( $('#rID').val() == 'X' ) { msg = msg + 'Bitte einen <strong>Lauf</strong> ausw&auml;hlen<br>'; }
 
 		    if( msg == '' ) {
@@ -225,7 +226,7 @@ function showTeilnehmerEditForm() {
 		<div class="form-group">
 			<label for="att" class="col-sm-4 control-label">Attribut:</label>
 			<div class="col-sm-4">
-				<input name="att" maxlength="200" type="text" class="form-control" id="att" placeholder="Ort" value="<?php echo $att; ?>">
+				<input name="att" maxlength="2" type="text" class="form-control" id="att" placeholder="Attribut" value="<?php echo $att; ?>">
 			</div>
 		</div>
 		
