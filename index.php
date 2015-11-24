@@ -70,12 +70,14 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
     <link href="css/opentiming.css" rel="stylesheet">
 	<link href="css/font-awesome.css" rel="stylesheet">
 	<link href="css/bootstrap-datepicker3.css" rel="stylesheet">
+	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 	
 	<script src="js/jquery-2.1.4.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-datepicker.de.min.js"></script>
     <script src="js/opentiming.js"></script>
+	<script src="js/jquery-ui/jquery-ui.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
@@ -107,7 +109,7 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Teilnehmer <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="index.php?func=teilnehmer">Teilnehmerliste</a></li>
-							<li><a href="#">Teilnehmer Eingabe</a></li>
+							<li><a href="index.php?func=teilnehmer&id=new">Teilnehmer Eingabe</a></li>
 							<li><a href="#">Teilnehmer Laden</a></li>
 						</ul>
 					</li>

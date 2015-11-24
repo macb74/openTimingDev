@@ -40,23 +40,39 @@ function lockRace( id ) {
 }
 
 function submitForm(form, redirect) {
-
+	var result = '';
+	
 	$.ajax({
 		type: "POST",
 		url: "ajaxRequest.php",
 		data: $( form ).serialize(),
+		async: true,
 		success: function(msg) {
 			if(msg != 'ok') {
 				redirect = false;
 				$('.alert').html(msg);
 				$('.alert').removeClass('hidden');
+			} else {
+				if(form == '#editTeilnehmer') {
+					clearForm();
+				}
 			}
 			if(redirect) { window.location.href = redirect; }
 		}
 	})
-
+	
 }
 
+function clearForm() {
+	$('#stnr').val('');
+	$('#vorname').val('');
+	$('#nachname').val('');
+	$('#verein').val('');	
+	$('#jahrgang').val('');
+	$('#geschlecht').val('');
+	$('#ort').val('');
+	$('#zeit').val('00:00:00');
+}
 
 function addKlasseZeile( id ) {
 	var jqxhr = $.get( 'ajaxRequest.php?func=addKlasse&id=' + id );
