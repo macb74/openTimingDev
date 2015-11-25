@@ -84,6 +84,9 @@ body {
   }
 }
 */
+table {
+  font-size: 14px;
+}
 
 .main .page-header {
   margin-top: 0;

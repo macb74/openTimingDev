@@ -381,7 +381,7 @@ function showRaceList() {
 					</td>
 					<td>
 						<div class="btn-group" role="group" aria-label="...">
-							<a class="btn btn-default btn-small-border" onclick="javascript:showContentTable('contentTable.html')">
+							<a class="btn btn-default btn-small-border" onclick="javascript:showContent('showErgebnisse', <?php echo $row['ID']; ?>)">
 								<i class="fa fa-male"></i> <i class="fa fa-list"></i>
 							</a>
 							<a class="btn btn-default btn-small-border">

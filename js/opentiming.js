@@ -2,10 +2,6 @@
  * 
  */
 
-function showContentTable( param ) {
-	$( '.content-table' ).load( param );	
-}
-
 function selectUrkundeResult(num, lid) {
 //	//var target = this;
 //	var jqxhr = $.get( "setNumOfResults.php");
@@ -128,4 +124,8 @@ function showHideRunden(id) {
     } else {
         $( '#rundenrennen' ).addClass('hidden');
     }
+}
+
+function showContent( func, param ) {
+	$( '.content-table' ).load( 'ajaxRequest.php?func=' + func + '&id' + param );	
 }
