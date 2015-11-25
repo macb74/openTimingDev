@@ -73,11 +73,18 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
 	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 	
 	<script src="js/jquery-2.1.4.js"></script>
+	<script src="js/jquery-ui/jquery-ui.min.js"></script>
+	
+	<script>
+		/*** Handle jQuery plugin naming conflict between jQuery UI and Bootstrap ***/
+		$.widget.bridge('uibutton', $.ui.button);
+		$.widget.bridge('uitooltip', $.ui.tooltip);
+	</script>
+
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-datepicker.de.min.js"></script>
     <script src="js/opentiming.js"></script>
-	<script src="js/jquery-ui/jquery-ui.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
@@ -124,7 +131,7 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
 							<li><a href="#">Analyse Zielzeiten</a></li>
 						</ul>
 					</li>
-					<li><a href="#" onclick="javascript:showAuswertung();"><i class="fa fa-cog"></i> Auswertung</a></li>
+					<li><a href="index.php?func=auswertung"><i class="fa fa-cog"></i> Auswertung</a></li>
 				</ul>
 				
 <?php 

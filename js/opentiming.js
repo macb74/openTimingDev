@@ -103,3 +103,29 @@ function deleteFullKlasse( id ) {
 		}
 	});
 }
+
+function getKlasse(jg, sex, lid)
+{
+	var url = "ajaxRequest.php?func=getKlasse&jg=" + jg + "&sex=" + sex + "&lid=" + lid;
+	$.get( url, function(data){
+		setKlasse(data);
+	});
+}
+
+function setKlasse(data)
+{
+	var klasseArray;
+	klasseArray = data.split(";");
+ 
+	$("#klasse").val(klasseArray[0]);
+	$("#vklasse").val(klasseArray[1]);
+}
+
+function showHideRunden(id) {
+	//console.log(id);
+    if( id == 1) {
+        $( '#rundenrennen' ).removeClass('hidden');
+    } else {
+        $( '#rundenrennen' ).addClass('hidden');
+    }
+}

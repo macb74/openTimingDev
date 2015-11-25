@@ -123,13 +123,46 @@ function showTeilnehmerEditForm() {
 				checkAndSubmit( 'close' );
 			});
 
+			
 			$("#submit").click(function(event){
 			    event.preventDefault();
 				checkAndSubmit( 'next' );
 			});
+
+
+			$("#rID").change(function(){
+				getKlasse($('#jahrgang').val(), $('#geschlecht').val(), $('#rID').val());
+				showHideRunden($("option:selected", this).attr('rr'));
+			});
+
+			
+			$("#jahrgang").change(function(){
+				getKlasse($('#jahrgang').val(), $('#geschlecht').val(), $('#rID').val());
+			});
+
+			
+			$("#geschlecht").change(function(){
+				getKlasse($('#jahrgang').val(), $('#geschlecht').val(), $('#rID').val());
+			});
+
+			
+			$("#manRunden").change(function(){
+				var a = $("#manRunden").val();
+				var b = $("#autRunden").val();
+
+				if(a == '') { a = 0 }
+				var c = parseInt(a) + parseInt(b);
+
+				console.log(c);
+				$("#sumRunden").val(c);
+			});
+
+			
+			showHideRunden($("option:selected", '#rID').attr('rr'));
+			getKlasse($('#jahrgang').val(), $('#geschlecht').val(), $('#rID').val());
 			
 		});
-
+ 		
 		function checkAndSubmit( form ) {
 		    var msg = '';
 			if( $('#nachname').val().length  < 2 ) { msg = msg + '<strong>Nachname</strong> darf nicht leer sein<br>'; }
@@ -191,7 +224,8 @@ function showTeilnehmerEditForm() {
 		<div class="form-group">
 			<label for="title" class="col-sm-4 control-label">Geschlecht:</label>
 			<div class="col-sm-4">
-				<select class="form-control" name="geschlecht">
+				<select class="form-control" name="geschlecht" id="geschlecht">
+					<option value="-">-</option>
 					<option value="M" <?php if($geschlecht == "M") { echo "selected"; }?>>M</option>
 					<option value="W" <?php if($geschlecht == "W") { echo "selected"; }?>>W</option>
 					<option value="X" <?php if($geschlecht == "X") { echo "selected"; }?>>X</option>
@@ -230,25 +264,27 @@ function showTeilnehmerEditForm() {
 			</div>
 		</div>
 		
-		<div class="form-group">
-			<label for="runden" class="col-sm-4 control-label">Runden:</label>
-			<div class="col-sm-1">
-				<input readonly name="autRunden" type="text" class="form-control" id="autRunden" placeholder="" value="<?php echo $autRunden; ?>">
-			</div>
-			<div class="col-sm-1">
-				<input name="manRunden" type="text" class="form-control" id="manRunden" placeholder="" value="<?php echo $manRunden; ?>">
-			</div>
-			<label for="title" class="col-sm-1 control-label">Summe:</label>
-			<div class="col-sm-1">
-				<input readonly name="sumRunden" type="text" class="form-control" id="sumRunden" placeholder="" value="">
+		<div id="rundenrennen" class="hidden">
+			<div class="form-group">
+				<label for="runden" class="col-sm-4 control-label">Runden:</label>
+				<div class="col-sm-1">
+					<input readonly name="autRunden" type="text" class="form-control" id="autRunden" placeholder="" value="<?php echo $autRunden; ?>">
+				</div>
+				<div class="col-sm-1">
+					<input name="manRunden" type="text" class="form-control" id="manRunden" placeholder="" value="<?php echo $manRunden; ?>">
+				</div>
+				<label for="title" class="col-sm-1 control-label">Summe:</label>
+				<div class="col-sm-1">
+					<input readonly name="sumRunden" type="text" class="form-control" id="sumRunden" placeholder="" value="">
+				</div>
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label for="rennen" class="col-sm-4 control-label">Lauf:</label>
 			<div class="col-sm-4">
-				<select id="rID" name="rID"  class="form-control" onChange="getKlasse(document.getElementById('jg').value, document.getElementById('geschlecht').value, document.getElementById('rID').value); return false;">
-					<option value="X">bitte w&auml;hlen</option>
+				<select id="rID" name="rID"  class="form-control">
+					<option rr="0" value="X">bitte w&auml;hlen</option>
 
 <?php
 
@@ -260,13 +296,14 @@ function showTeilnehmerEditForm() {
 		$kID 		= $row2['klasse'];
 		$titel 		= $row2['titel'];
 		$utitel 	= $row2['untertitel'];
+		$rr			= $row2['rundenrennen'];
 
 		if($_GET['id'] != "new") {
 			if($rID == $lID) { $s="selected"; } else { $s=""; }
 		} else {
 			if($rID == $_SESSION['rID']) { $s="selected"; } else { $s=""; }
 		}
-		echo "<option value=\"$rID\" $s>$titel - $utitel</option>\n";
+		echo "<option rr=\"$rr\" value=\"$rID\" $s>$titel - $utitel</option>\n";
 	}
 	
 ?>
@@ -376,7 +413,7 @@ function getKlasse($jg, $sex, $rennen, $ajax) {
 	$k[1] = getKlasseData($alter, $sex, $rennen, 1);
 	
 	if($ajax == 1) {
-		return $k[0].";".$k[1];
+		echo $k[0].";".$k[1];
 	} else {
 		return $k;
 	}

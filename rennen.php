@@ -152,7 +152,7 @@ function showRaceEditForm() {
 
 			    var msg = '';
 				if( $('#title').val().length  < 2 ) { msg = msg + '<strong>Titel</strong> darf nicht leer sein<br>'; }
-				if( $('#start').val().length  != 19 ) { msg = msg + '<strong>Datum</strong> ist nicht im richtigen Format, oder leer<br>'; }
+				if( $('#start').val().length  != 19 ) { msg = msg + '<strong>Startzeit</strong> ist nicht im richtigen Format, oder leer<br>'; }
 				
 			    if( msg == '' ) {
 					submitForm('#editRennen', 'index.php?func=rennen');
