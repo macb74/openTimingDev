@@ -392,7 +392,7 @@ function showRaceList() {
 							</a>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
-							<a class="btn btn-default btn-small-border">
+							<a class="btn btn-default btn-small-border" onclick="javascript:showContent('showErgebnisseM', <?php echo $row['ID']; ?>)">
 								<i class="fa fa-users"></i> <i class="fa fa-list"></i>
 							</a>
 							<a class="btn btn-default btn-small-border">
@@ -436,44 +436,7 @@ function showRaceList() {
 	</div>
 	
 <?php 
-// 	$html2 = "";
-// 	$i=1;
-// 	if($result[1] > 0) {
-// 		foreach ($result[0] as $row) {
-// 			if($i%2 == 0) { $html2 .= "<tr class=\"even\">\n"; } else { $html2 .= "<tr class=\"odd\">\n"; }
-	
-// 			$subtitle = "";
-// 			if ($row['untertitel'] != "") { $subtitle = "<i>- ".$row['untertitel']."</i>"; }
-// 			$html2 .= "<td width=\"30\" align=\"left\">".$row['ID']."</td>\n";
-// 			$html2 .= "<td align=\"left\">".$row['titel']." $subtitle</td>\n";
-// 			//$html2 .= "<td align=\"left\">".$row['untertitel']."</td>\n";
-// 			$html2 .= "<td align=\"left\">".$row['start']."</td>\n";
-// 			$html2 .= "<td align=\"left\">".$row['aktualisierung']."</td>\n";
-// 			$html2 .= "<td align=\"left\">";
-// 				if($row['lockRace'] == 0) {	
-// 				$html2 .= 	"<a href=\"".$_SERVER["SCRIPT_NAME"]."?func=".$func[0]."&ID=".$row['ID']."\">Laufwertung starten</a>" .
-// 							"&nbsp;&nbsp;" .
-// 							"| ";
-// 				} else {
-// 				$html2 .= 	"Rennen gesperrt" .
-// 							"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .
-// 							"| ";
-// 				}
-// 			$html2 .= "<a id=\"showInDiv\" href=\"jqRequest&func=showWithowtTime&lid=".$row['ID']."\">Teilnehmer ohne Zeit</a>" .
-// 					"&nbsp;&nbsp;" .
-// 	//				"| " .
-// 	//				"&nbsp;&nbsp;" .
-// 	//				"<a href=\"".$_SERVER["SCRIPT_NAME"]."?func=auswertung.klasse&ID=".$row['ID']."\">Klassen neu zuordnen</a>" .
-// 					"</td>\n";
-// 			$html2 .= "</tr>\n";
-// 			$i++;
-// 		}
-// 	}
 
-// 	$columns = array('ID', 'Titel', 'Start', 'Aktualisierung', 'Aktion');
-// 	$html .= tableList($columns, $html2, "common meetings");
-			
-// 	return $html;
 }
 
 function showWithowtTime($rennen) {

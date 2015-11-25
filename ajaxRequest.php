@@ -15,6 +15,8 @@ if(isset($_GET['func'])) {
 	if($_GET['func'] == 'getVerein')				{ getVerein(); }
 	if($_GET['func'] == 'getKlasse')				{ getKlasse($_GET['jg'], $_GET['sex'], $_GET['lid'], 1); }
 	if($_GET['func'] == 'getLastRaceUpdate')		{ getLastRaceUpdate(); }
+	if($_GET['func'] == 'showErgebnisse')			{ showErgebnisse(); }
+	if($_GET['func'] == 'showErgebnisseM')			{ showErgebnisseM(); }
 }
 
 

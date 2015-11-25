@@ -13,7 +13,7 @@ include "rennen.php";
 include "klasse.php";
 #include "startliste.php";
 include "auswertung.php";
-#include "ergebnis.php";
+include "ergebnis.php";
 #include "urkunden.php";
 #include "import.php";
 #include "einlaufListe.php";

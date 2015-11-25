@@ -127,5 +127,5 @@ function showHideRunden(id) {
 }
 
 function showContent( func, param ) {
-	$( '.content-table' ).load( 'ajaxRequest.php?func=' + func + '&id' + param );	
+	$( '.content-table' ).load( 'ajaxRequest.php?func=' + func + '&id=' + param );	
 }
