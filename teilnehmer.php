@@ -169,11 +169,14 @@ function showTeilnehmerEditForm() {
 		    if( $('#vorname').val().length  < 2 ) { msg = msg + '<strong>Vorname</strong> darf nicht leer sein<br>'; }
 			if( $('#rID').val() == 'X' ) { msg = msg + 'Bitte einen <strong>Lauf</strong> ausw&auml;hlen<br>'; }
 
+			var next = 'teilnehmer';
+			if( $('#nextFunc').val() != '' ) { next = $('#nextFunc').val(); }
+			
 		    if( msg == '' ) {
 			    if( form == 'next' ) {
 					submitForm('#editTeilnehmer', false);
 			    } else {
-			    	submitForm('#editTeilnehmer', 'index.php?func=teilnehmer');
+			    	submitForm('#editTeilnehmer', 'index.php?func=' + next);
 				}
 		    } else {
 				$(".alert").html(msg);
@@ -188,6 +191,7 @@ function showTeilnehmerEditForm() {
 		<div class="form-group">
 			<input type="hidden" name="form" value="saveTeilnehmer">
 			<input type="hidden" name="id" value="<?php echo $id; ?>">
+			<input type="hidden" name="nextFunc" id= "nextFunc" value="<?php if(isset($_GET['nextFunc'])) { echo $_GET['nextFunc']; } ?>">
 		</div>
 		
 		<div class="form-group">
@@ -319,9 +323,9 @@ function showTeilnehmerEditForm() {
 		
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-5">
-				<button type="submit" id="submit" class="btn btn-success" value="save">save + next</button>
+				<button type="submit" id="submit" class="btn btn-success" value="save">save + new</button>
 				<button type="submit" id="submit-close" class="btn btn-success" value="save + close">save + close</button>
-				<a type="button" class="btn btn-default" href="index.php?func=teilnehmer">cancel</a>
+				<a type="button" class="btn btn-default" href="index.php?func=<?php if(isset($_GET['nextFunc'])) { echo $_GET['nextFunc']; } else { echo 'teilnehmer'; } ?>">cancel</a>
 			</div>
 		</div>
 		

@@ -18,7 +18,8 @@ if(isset($_GET['func'])) {
 	if($_GET['func'] == 'showStartliste')			{ showStartliste(); }
 	if($_GET['func'] == 'showErgebnisse')			{ showErgebnisse(); }
 	if($_GET['func'] == 'showErgebnisseM')			{ showErgebnisseM(); }
-	if($_GET['func'] == 'setNumOfResults')			{ setNumOfResults(); }	
+	if($_GET['func'] == 'setNumOfResults')			{ setNumOfResults(); }
+	if($_GET['func'] == 'doAuswertung')				{ doAuswertung(); }
 }
 
 

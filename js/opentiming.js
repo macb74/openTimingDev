@@ -12,6 +12,7 @@ function selectUrkundeResult(num, id) {
 	});
 }
 
+
 function selectVeranstaltung( id ) {
 	var jqxhr = $.get( "ajaxRequest.php?func=selectVeranstaltung&id=" + id );
 	jqxhr.success(function( data ) {
@@ -21,10 +22,11 @@ function selectVeranstaltung( id ) {
 	});
 }
 
+
 function lockRace( id ) {
 	var jqxhr = $.get( "ajaxRequest.php?func=lockRace&lid=" + id);
 	jqxhr.success(function( data ) {
-		console.log(data);
+		//console.log(data);
 		if( data == 1 ) {
 			$( '#lock-' + id ).removeClass( 'fa-unlock' );
 			$( '#lock-' + id ).addClass( 'fa-lock' );
@@ -34,6 +36,7 @@ function lockRace( id ) {
 		}
 	});
 }
+
 
 function submitForm(form, redirect) {
 	var result = '';
@@ -59,6 +62,7 @@ function submitForm(form, redirect) {
 	
 }
 
+
 function clearForm() {
 	$('#stnr').val('');
 	$('#vorname').val('');
@@ -70,6 +74,7 @@ function clearForm() {
 	$('#zeit').val('00:00:00');
 }
 
+
 function addKlasseZeile( id ) {
 	var jqxhr = $.get( 'ajaxRequest.php?func=addKlasse&id=' + id );
 	jqxhr.success(function( data ) {
@@ -79,6 +84,7 @@ function addKlasseZeile( id ) {
 	});
 }
 
+
 function deleteKlasse( id, kid ) {
 	var jqxhr = $.get( 'ajaxRequest.php?func=deleteKlasse&id=' + id );
 	jqxhr.success(function( data ) {
@@ -87,6 +93,7 @@ function deleteKlasse( id, kid ) {
 		}
 	});
 }
+
 
 function deleteFullKlasse( id ) {
 	var jqxhr = $.get( 'ajaxRequest.php?func=deleteFullKlasse&id=' + id );
@@ -100,6 +107,7 @@ function deleteFullKlasse( id ) {
 	});
 }
 
+
 function getKlasse(jg, sex, lid)
 {
 	var url = "ajaxRequest.php?func=getKlasse&jg=" + jg + "&sex=" + sex + "&lid=" + lid;
@@ -107,6 +115,7 @@ function getKlasse(jg, sex, lid)
 		setKlasse(data);
 	});
 }
+
 
 function setKlasse(data)
 {
@@ -117,6 +126,7 @@ function setKlasse(data)
 	$("#vklasse").val(klasseArray[1]);
 }
 
+
 function showHideRunden(id) {
 	//console.log(id);
     if( id == 1) {
@@ -126,10 +136,24 @@ function showHideRunden(id) {
     }
 }
 
+
 function showContent( func, param ) {
 	$( '.content-table' ).load( 'ajaxRequest.php?func=' + func + '&id=' + param );	
 }
 
+
 function clearContent() {
 	$( '.content-table' ).html('');	
+}
+
+
+function doAuswertung( id ) {
+	$('#modal').modal();
+	
+	var jqxhr = $.get( "ajaxRequest.php?func=doAuswertung&id=" + id);
+	jqxhr.success(function( data ) {
+		console.log(data);
+		$( '#modal-body' ).html( data );
+	});
+	
 }

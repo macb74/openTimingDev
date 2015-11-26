@@ -41,7 +41,7 @@ function showStartliste() {
 			
 				<tr>
 					<td><?php echo $row['stnr']; ?></td>
-					<td><a href="index.php?func=teilnehmer&id=<?php echo $row['ID']; ?>&nextFunc=startliste"><?php echo $row['nachname'].", ".$row['vorname']; ?></a></td>
+					<td><a href="index.php?func=teilnehmer&id=<?php echo $row['ID']; ?>&nextFunc=auswertung"><?php echo $row['nachname'].", ".$row['vorname']; ?></a></td>
 					<td><?php echo $row['verein']; ?></td>
 					<td><?php echo $row['jahrgang']; ?></td>
 					<td><?php echo $row['geschlecht']; ?></td>

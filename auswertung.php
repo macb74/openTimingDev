@@ -4,7 +4,8 @@ function auswertung() {
 	showRaceList();	
 }
 
-function doAuswertung($rennen) {
+function doAuswertung() {
+	$rennen = $_GET['id'];
 	$anzTeilnehmer = 0;
 	$anzTeams = 0;
 	$veranstaltung = $_SESSION['vID'];
@@ -25,7 +26,7 @@ function doAuswertung($rennen) {
 	}
 	updateStatus($veranstaltung, $rennen);
 	
-	return "<p>Es wurden <b>$anzTeilnehmer Teilnehmer</b> und <b>$anzTeams Teams ausgewertet</b></p>";
+	echo "<p>Es wurden <b>$anzTeilnehmer Teilnehmer</b> ausgewertet<br>Es wurden <b>$anzTeams Teams</b> ausgewertet</p>";
 }
 
 function getSeconds($s) {
@@ -373,7 +374,9 @@ function showRaceList() {
 					<td><?php echo substr($row['start'], 10); ?></td>
 					<td>
 						<div class="btn-group" role="group" aria-label="...">
-							<a rid="<?php echo $row['ID']; ?>" class="btn btn-default btn-small-border last-race-update"><!--<i class="fa fa-cog"></i> --><i class="fa fa-clock-o"></i> Laufwertung</a>
+							<a rid="<?php echo $row['ID']; ?>" class="btn btn-default btn-small-border last-race-update" onclick="javascript:doAuswertung(<?php echo $row['ID']; ?>)">
+								<!--<i class="fa fa-cog"></i> --><i class="fa fa-clock-o"></i> Laufwertung
+							</a>
 						</div>
 					</td>
 					<td>
@@ -389,39 +392,39 @@ function showRaceList() {
 					</td>
 					<td>
 						<div class="btn-group" role="group" aria-label="...">
-							<a class="btn btn-default btn-small-border" onclick="javascript:showContent('showErgebnisse', <?php echo $row['ID']; ?>)">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Bildschirmliste" onclick="javascript:showContent('showErgebnisse', <?php echo $row['ID']; ?>)">
 								<i class="fa fa-male"></i> <i class="fa fa-list"></i>
 							</a>
-							<a class="btn btn-default btn-small-border">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF Gesammt">
 								<i class="fa fa-male"></i> <i class="fa fa-file-pdf-o"></i>
 							</a>
-							<a class="btn btn-default btn-small-border">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Klassen">
 								<i class="fa fa-male"></i><i class="fa fa-female"></i> <i class="fa fa-file-pdf-o"></i>
 							</a>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
-							<a class="btn btn-default btn-small-border" onclick="javascript:showContent('showErgebnisseM', <?php echo $row['ID']; ?>)">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Ergebnisse Mannschaft" onclick="javascript:showContent('showErgebnisseM', <?php echo $row['ID']; ?>)">
 								<i class="fa fa-users"></i> <i class="fa fa-list"></i>
 							</a>
-							<a class="btn btn-default btn-small-border">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF Ergebnisse Mannschaft">
 								<i class="fa fa-users"></i> <i class="fa fa-file-pdf-o"></i>
 							</a>
 						</div>
 					</td>
 					<td>
 						<div class="btn-group" role="group" aria-label="...">
-							<a class="btn btn-default btn-small-border">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Gesammtwertung">
 								<i class="fa"></i> <i class="fa fa-user"></i>
 							</a>
-							<a class="btn btn-default btn-small-border">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Klassenwertung">
 								<i class="fa"></i> <i class="fa fa-user-times"></i>
 							</a>
-							<a class="btn btn-default btn-small-border">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Mannschaftswertung">
 								<i class="fa"></i> <i class="fa fa-users"></i>
 							</a>
 						</div>
 						<div class="btn-group" role="group">
-							<a class="btn btn-default btn-small-border dropdown-toggle" id="num-of-results-<?php echo $row['ID']; ?>" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">
+							<a class="btn btn-default btn-small-border dropdown-toggle" data-toggle="tooltip" title="Urkunden bis Platz ..." id="num-of-results-<?php echo $row['ID']; ?>" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">
 
 <?php 
 

@@ -66,7 +66,7 @@ function showErgebnisse() {
 				<tr>
 					<td><?php echo $i; ?></td>
 					<td><?php echo $row['stnr']; ?></td>
-					<td><a href="index.php?func=teilnehmer&id=<?php echo $row['ID'] ?>"><?php echo $row['nachname'].", ".$row['vorname']; ?></a></td>
+					<td><a href="index.php?func=teilnehmer&id=<?php echo $row['ID'] ?>&nextFunc=auswertung"><?php echo $row['nachname'].", ".$row['vorname']; ?></a></td>
 					<td><?php echo $row['verein']; ?></td>
 					<?php if ($rd['rundenrennen'] == 0) { echo "<td>".$row['jahrgang']."</td>"; } ?>
 					<?php if ($rd['rundenrennen'] == 0) { echo "<td>".$row['geschlecht']."</td>"; } ?>
