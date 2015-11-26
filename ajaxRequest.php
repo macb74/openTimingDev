@@ -15,8 +15,10 @@ if(isset($_GET['func'])) {
 	if($_GET['func'] == 'getVerein')				{ getVerein(); }
 	if($_GET['func'] == 'getKlasse')				{ getKlasse($_GET['jg'], $_GET['sex'], $_GET['lid'], 1); }
 	if($_GET['func'] == 'getLastRaceUpdate')		{ getLastRaceUpdate(); }
+	if($_GET['func'] == 'showStartliste')			{ showStartliste(); }
 	if($_GET['func'] == 'showErgebnisse')			{ showErgebnisse(); }
 	if($_GET['func'] == 'showErgebnisseM')			{ showErgebnisseM(); }
+	if($_GET['func'] == 'setNumOfResults')			{ setNumOfResults(); }	
 }
 
 
@@ -48,7 +50,7 @@ exit;
 
 function selectVeranstaltung( $id ) {
 	$_SESSION['vID'] = $id;
-	$_SESSION['rID'] = "";
+	$_SESSION['rID'] = 0;
 	
 	$sql = "select * from veranstaltung where id = $id";
 	$result = dbRequest($sql, 'SELECT');
@@ -95,5 +97,10 @@ function getLastRaceUpdate() {
 		}
 	}
 	echo $a;
+}
+
+function setNumOfResults() {
+	$_SESSION['anzUrkunden-'.$_GET['id']] = $_GET['num'];
+	echo "ok";
 }
 ?>

@@ -2,14 +2,14 @@
  * 
  */
 
-function selectUrkundeResult(num, lid) {
-//	//var target = this;
-//	var jqxhr = $.get( "setNumOfResults.php");
-//	jqxhr.success(function( data ) {
-//		var prefix = "";
-//		if(num != 'ALL') { prefix = '&nbsp;&nbsp;&nbsp;&nbsp;'; }
-//		$( '#num-of-results-' + lid ).html( num + prefix + '<span class="caret"></span>');
-//	});
+function selectUrkundeResult(num, id) {
+	//var target = this;
+	var jqxhr = $.get( "ajaxRequest.php?func=setNumOfResults&id=" + id + "&num=" + num);
+	jqxhr.success(function( data ) {
+		var prefix = "";
+		if(num != 'ALL') { prefix = '&nbsp;&nbsp;&nbsp;&nbsp;'; }
+		$( '#num-of-results-' + id ).html( num + prefix + '<span class="caret"></span>');
+	});
 }
 
 function selectVeranstaltung( id ) {
@@ -128,4 +128,8 @@ function showHideRunden(id) {
 
 function showContent( func, param ) {
 	$( '.content-table' ).load( 'ajaxRequest.php?func=' + func + '&id=' + param );	
+}
+
+function clearContent() {
+	$( '.content-table' ).html('');	
 }

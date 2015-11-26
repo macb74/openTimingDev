@@ -326,7 +326,15 @@ function showRaceList() {
 					.tooltip('show');
 				});
 			});
-	
+
+			<?php 
+
+					if($_SESSION['rID'] != 0) {
+						echo "showContent( '".$_SESSION['contentFunc']."', ".$_SESSION['rID']." )";
+					}
+
+			?>
+			
 		});
 	
 	</script>
@@ -370,7 +378,7 @@ function showRaceList() {
 					</td>
 					<td>
 						<div class="btn-group" role="group" aria-label="...">
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Bildschirmliste">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Bildschirmliste" onclick="javascript:showContent('showStartliste', <?php echo $row['ID']; ?>)">
 								 <i class="fa"></i> <i class="fa fa-list"></i>
 							</a>
 							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Name sortiert">
@@ -413,13 +421,27 @@ function showRaceList() {
 							</a>
 						</div>
 						<div class="btn-group" role="group">
-							<a class="btn btn-default btn-small-border dropdown-toggle" id="num-of-results-78" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">3&nbsp;&nbsp;&nbsp;&nbsp;
+							<a class="btn btn-default btn-small-border dropdown-toggle" id="num-of-results-<?php echo $row['ID']; ?>" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">
+
+<?php 
+
+if(isset($_SESSION['anzUrkunden-'.$row['ID']])) { 
+	echo $_SESSION['anzUrkunden-'.$row['ID']];
+	if($_SESSION['anzUrkunden-'.$row['ID']] != 'ALL') {
+		echo "&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
+} else { 
+	echo "3";
+} 
+
+?>
+
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a onclick="javascript:selectUrkundeResult(3, 78);">3</a></li>
-								<li><a onclick="javascript:selectUrkundeResult(6, 78);">6</a></li>
-								<li><a onclick="javascript:selectUrkundeResult('ALL', 78);">ALL</a></li>
+								<li><a onclick="javascript:selectUrkundeResult(3, <?php echo $row['ID']; ?>);">3</a></li>
+								<li><a onclick="javascript:selectUrkundeResult(6, <?php echo $row['ID']; ?>);">6</a></li>
+								<li><a onclick="javascript:selectUrkundeResult('ALL', <?php echo $row['ID']; ?>);">ALL</a></li>
 							</ul>
 						</div>
 					</td>

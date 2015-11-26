@@ -300,8 +300,6 @@ function showTeilnehmerEditForm() {
 
 		if($_GET['id'] != "new") {
 			if($rID == $lID) { $s="selected"; } else { $s=""; }
-		} else {
-			if($rID == $_SESSION['rID']) { $s="selected"; } else { $s=""; }
 		}
 		echo "<option rr=\"$rr\" value=\"$rID\" $s>$titel - $utitel</option>\n";
 	}

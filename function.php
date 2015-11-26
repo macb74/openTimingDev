@@ -11,7 +11,7 @@ include "veranstaltung.php";
 include "teilnehmer.php";
 include "rennen.php";
 include "klasse.php";
-#include "startliste.php";
+include "startliste.php";
 include "auswertung.php";
 include "ergebnis.php";
 #include "urkunden.php";
