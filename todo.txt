@@ -1,0 +1,25 @@
+# excel export
+
+
+# update pdf libs
+2015-11-27 done
+
+# upload Teilnehmer / Zeit Liste
+
+
+# Einlaufliste
+
+
+# Reader Zeit Analyse
+
+
+# Reader Zeit bearbeiten
+
+
+# openTiming Logo überarbeiten
+
+
+# urkundenaufruf aus der Ergebnisliste
+
+
+# Realtime Ansicht
