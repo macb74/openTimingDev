@@ -143,6 +143,7 @@ function showContent( func, param ) {
 
 
 function clearContent() {
+	$.get( "ajaxRequest.php?func=clearRaceId" );
 	$( '.content-table' ).html('');	
 }
 
@@ -152,8 +153,14 @@ function doAuswertung( id ) {
 	
 	var jqxhr = $.get( "ajaxRequest.php?func=doAuswertung&id=" + id);
 	jqxhr.success(function( data ) {
-		console.log(data);
+		//console.log(data);
 		$( '#modal-body' ).html( data );
 	});
 	
+}
+
+
+function clearModal() {
+	var data = '<span class="text-muted">loading...</span>';
+	$( '#modal-body' ).html( data );
 }

@@ -328,6 +328,12 @@ function showRaceList() {
 				});
 			});
 
+
+			$(".btn").mouseup(function(){
+			    $(this).blur();
+			})
+
+			
 			<?php 
 
 					if($_SESSION['rID'] != 0) {
@@ -384,10 +390,12 @@ function showRaceList() {
 							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Bildschirmliste" onclick="javascript:showContent('showStartliste', <?php echo $row['ID']; ?>)">
 								 <i class="fa"></i> <i class="fa fa-list"></i>
 							</a>
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Name sortiert">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Name sortiert" href="exportPDF.php?action=startliste&sort=nachname&id=<?php echo $row['ID']; ?>" target="_new">
 								<i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-alpha-asc"></i>
 							</a>
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Startnummer sortiert"><i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-numeric-asc"></i></a>
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Startnummer sortiert" href="exportPDF.php?action=startliste&sort=stnr&id=<?php echo $row['ID']; ?>" target="_new">
+								<i class="fa fa-file-pdf-o"></i> <i class="fa fa-sort-numeric-asc"></i>
+							</a>
 						</div>
 					</td>
 					<td>
@@ -395,10 +403,10 @@ function showRaceList() {
 							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Bildschirmliste" onclick="javascript:showContent('showErgebnisse', <?php echo $row['ID']; ?>)">
 								<i class="fa fa-male"></i> <i class="fa fa-list"></i>
 							</a>
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF Gesammt">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF Gesammt" href="exportPDF.php?action=ergebnisGesamt&id=<?php echo $row['ID']; ?>" target="_new">
 								<i class="fa fa-male"></i> <i class="fa fa-file-pdf-o"></i>
 							</a>
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Klassen">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF nach Klassen" href="exportPDF.php?action=ergebnisKlasse&id=<?php echo $row['ID']; ?>" target="_new">
 								<i class="fa fa-male"></i><i class="fa fa-female"></i> <i class="fa fa-file-pdf-o"></i>
 							</a>
 						</div>
@@ -406,25 +414,25 @@ function showRaceList() {
 							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Ergebnisse Mannschaft" onclick="javascript:showContent('showErgebnisseM', <?php echo $row['ID']; ?>)">
 								<i class="fa fa-users"></i> <i class="fa fa-list"></i>
 							</a>
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF Ergebnisse Mannschaft">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF Ergebnisse Mannschaft" href="exportPDF.php?action=ergebninsMannschaft&id=<?php echo $row['ID']; ?>" target="_new">
 								<i class="fa fa-users"></i> <i class="fa fa-file-pdf-o"></i>
 							</a>
 						</div>
 					</td>
 					<td>
 						<div class="btn-group" role="group" aria-label="...">
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Gesammtwertung">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Gesammtwertung" href="urkundenPDF.php?action=gesamt&id=<?php echo $row['ID']; ?>" target="_new">
 								<i class="fa"></i> <i class="fa fa-user"></i>
 							</a>
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Klassenwertung">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Klassenwertung" href="urkundenPDF.php?action=klasse&id=<?php echo $row['ID']; ?>" target="_new">
 								<i class="fa"></i> <i class="fa fa-user-times"></i>
 							</a>
-							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Mannschaftswertung">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="Mannschaftswertung" href="urkundenPDF.php?action=team&id=<?php echo $row['ID']; ?>" target="_new">
 								<i class="fa"></i> <i class="fa fa-users"></i>
 							</a>
 						</div>
 						<div class="btn-group" role="group">
-							<a class="btn btn-default btn-small-border dropdown-toggle" data-toggle="tooltip" title="Urkunden bis Platz ..." id="num-of-results-<?php echo $row['ID']; ?>" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">
+							<a class="btn btn-default btn-small-border dropdown-toggle" id="num-of-results-<?php echo $row['ID']; ?>" data-toggle="dropdown" aria-haspopup="true" id="selectUrkundeResult" aria-expanded="false">
 
 <?php 
 
@@ -433,8 +441,9 @@ if(isset($_SESSION['anzUrkunden-'.$row['ID']])) {
 	if($_SESSION['anzUrkunden-'.$row['ID']] != 'ALL') {
 		echo "&nbsp;&nbsp;&nbsp;&nbsp;";
 	}
-} else { 
-	echo "3";
+} else {
+	$_SESSION['anzUrkunden-'.$row['ID']] = 3;
+	echo "3&nbsp;&nbsp;&nbsp;&nbsp;";
 } 
 
 ?>

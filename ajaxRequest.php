@@ -20,6 +20,7 @@ if(isset($_GET['func'])) {
 	if($_GET['func'] == 'showErgebnisseM')			{ showErgebnisseM(); }
 	if($_GET['func'] == 'setNumOfResults')			{ setNumOfResults(); }
 	if($_GET['func'] == 'doAuswertung')				{ doAuswertung(); }
+	if($_GET['func'] == 'clearRaceId')				{ clearRaceId(); }
 }
 
 
@@ -102,6 +103,11 @@ function getLastRaceUpdate() {
 
 function setNumOfResults() {
 	$_SESSION['anzUrkunden-'.$_GET['id']] = $_GET['num'];
+	echo "ok";
+}
+
+function clearRaceId() {
+	$_SESSION['rID'] = 0;
 	echo "ok";
 }
 ?>

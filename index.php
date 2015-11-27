@@ -173,11 +173,11 @@ if ($showContent == true) {
       				<span class="text-muted">loading...</span>
       			</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default" onclick="clearModal(); return false;" data-dismiss="modal">Close</button>
 				</div>
-    		</div><!-- /.modal-content -->
- 		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+    		</div>
+ 		</div>
+	</div>
 	
 	
 </body>
@@ -185,5 +185,6 @@ if ($showContent == true) {
 
 <?php
 $link->close();
-#phpinfo();
+#phpinfo(32);
+#print_r($_SESSION);
 ?>
