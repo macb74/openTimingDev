@@ -14,8 +14,7 @@ include "klasse.php";
 include "startliste.php";
 include "auswertung.php";
 include "ergebnis.php";
-#include "urkunden.php";
-#include "import.php";
+include "import.php";
 #include "einlaufListe.php";
 #include "ziel.php";
 

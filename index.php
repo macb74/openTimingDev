@@ -12,7 +12,7 @@ $showContent = false;
 session_start();
 include "function.php";
 $link = connectDB();
-$allowedFunctions = array('veranstaltung', 'teilnehmer', 'auswertung', 'rennen', 'klasse');
+$allowedFunctions = array('veranstaltung', 'teilnehmer', 'auswertung', 'rennen', 'klasse', 'import');
 
 $_GET = filterParameters($_GET);
 $_POST = filterParameters($_POST);
@@ -117,14 +117,14 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
 						<ul class="dropdown-menu">
 							<li><a href="index.php?func=teilnehmer">Teilnehmerliste</a></li>
 							<li><a href="index.php?func=teilnehmer&id=new">Teilnehmer Eingabe</a></li>
-							<li><a href="#">Teilnehmer Laden</a></li>
+							<li><a href="index.php?func=import.teilnehmer">Teilnehmer Laden</a></li>
 						</ul>
 					</li>
 		
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-clock-o"></i> Zeit <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Zeitliste Einlesen</a></li>
+							<li><a href="index.php?func=import.zeit">Zeitliste Einlesen</a></li>
 							<li><a href="#">Readerzeit manuell Bearbeiten</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Einlaufliste</a></li>

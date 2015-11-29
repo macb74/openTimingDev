@@ -185,7 +185,7 @@ function showTeilnehmerEditForm() {
 		}
 
 	</script>
-
+	
 	<div class="alert alert-danger hidden col-sm-offset-3 col-sm-6" id="alert" role="alert"></div>
 	<form role="form" class="form-horizontal" id="editTeilnehmer" name="editTeilnehmer">
 		<div class="form-group">
