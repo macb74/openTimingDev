@@ -187,6 +187,13 @@ function uploadForm($func) {
 		});
 
 		$(document).ready( function() {
+
+			$("#submit").click(function(event){
+			    event.preventDefault();
+				submitForm('#upload', false);
+			});
+
+
 		    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 		        
 		        var input = $(this).parents('.input-group').find(':text'),
@@ -200,7 +207,7 @@ function uploadForm($func) {
 		        
 		    });
 		});
-
+		
 	</script>
 
 
@@ -210,54 +217,54 @@ function uploadForm($func) {
 	<div class="alert alert-danger hidden col-sm-offset-3 col-sm-6" id="alert" role="alert"></div>
 	<form role="form" class="form-horizontal" enctype="multipart/form-data" id="upload" name="upload">
 	
-	<div class="form-group">
-		<label for="datei" class="col-sm-4 control-label">
-			<?php  if ($func == "teilnehmer")	{ echo "Teilnehmerdatei:"; } ?>
-			<?php  if ($func == "zeit")		 	{ echo "Zeitdatei:"; } ?>
-		</label>
-		<div class="col-sm-4">
-			<input type="file" name="userfile" class="file" id="stnr" value="">
+		<div class="form-group">
+			<?php if ($func == "teilnehmer") { ?>
+			<label for="datei" class="col-sm-4 control-label">
+				Update existing:
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" name="update" value="1">	wenn diese Option nicht aktiviert ist, werden nur Datens&auml;tze angelegt, die noch nicht vorhanden sind			
+			</label>
+	
+			
+			<?php } ?>
+		</div>	
+		
+		<div class="form-group">
+			<label for="datei" class="col-sm-4 control-label">
+				<?php  if ($func == "teilnehmer")	{ echo "Teilnehmerdatei:"; } ?>
+				<?php  if ($func == "zeit")		 	{ echo "Zeitdatei:"; } ?>
+			</label>
+			<div class="col-sm-4">
+				<div class="input-group">
+		            <input type="text" class="form-control input-readonly" readonly>
+		        	<span class="input-group-btn">
+		            	<span class="btn btn-primary btn-file">
+		                        Browse&hellip; <input type="file" multiple>
+		                </span>
+		            </span>
+				</div>
+	        </div>
 		</div>
-	</div>
 	
-	
-	<div class="col-lg-6 col-sm-6 col-12">
-	<h4>Input Groups</h4>
-		<div class="input-group">
-        	<span class="input-group-btn">
-            	<span class="btn btn-primary btn-file">
-                        Browse&hellip; <input type="file" multiple>
-                </span>
-            </span>
-            <input type="text" class="form-control" readonly>
-        </div>
-        <span class="help-block">
-                Try selecting one or more files and watch the feedback
-        </span>
-    </div>
-        
-	
-	
-	Bitte wählen Sie die Datei.
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-5">
+				<button type="submit" id="submit" class="btn btn-success" value="upload">upload</button>
+			</div>
+		</div>
+	</form>
 
-	
-	<input type="file" name="userfile" size="40" value="">
-
-	<?php if ($func == "teilnehmer") { ?>
-		Update existing:
-		<input type="checkbox" name="update" value="1">&nbsp;wenn diese Option nicht aktiviert ist, werden nur Datensätze angelegt, die noch nicht vorhanden sind.
-	<?php } ?>
-
-	<input name="submit" type="submit" value="Upload" class="button">
-
-	<p><b>Dateiformat:</b></p>
-	<?php if ($func == "teilnehmer") { ?>
-		<p>Die erste Zeile enthält die Spaltenüberschriften</p>
-		<p>Veranstaltung;Rennen;Startnumer;Nachname;Vorname;Geschlecht;Jahrgang;Verein;Attribut</p>
-	<?php } else { ?>
-		<p>Die erste Zeile enthält die Spaltenüberschriften</p>
-		<p>Veranstaltung;Rennen;Startnumer;Zeit (HH:MM:SS)</p>
-	<?php } ?>
+	<p>&nbsp;</p>
+	<p class="col-sm-offset-2 col-sm-8 bg-info">
+		<b>Dateiformat:</b><br>
+		<?php if ($func == "teilnehmer") { ?>
+			Die erste Zeile enthält die Spaltenüberschriften<br>
+			Veranstaltung;Rennen;Startnumer;Nachname;Vorname;Geschlecht;Jahrgang;Verein;Attribut
+		<?php } else { ?>
+			Die erste Zeile enthält die Spaltenüberschriften<br>
+			Veranstaltung;Rennen;Startnumer;Zeit (HH:MM:SS)
+		<?php } ?>
+	</p>
 
 <?php
 }

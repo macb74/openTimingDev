@@ -152,6 +152,7 @@ table {
   position: relative;
   overflow: hidden;
 }
+
 .btn-file input[type=file] {
   position: absolute;
   top: 0;
@@ -166,7 +167,12 @@ table {
   cursor: inherit;
   display: block;
 }
-input[readonly] {
+
+.input-readonly {
   background-color: white !important;
   cursor: text !important;
+}
+
+.bg-info {
+  padding: 15px;
 }
