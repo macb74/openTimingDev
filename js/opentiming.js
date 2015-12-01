@@ -39,12 +39,32 @@ function lockRace( id ) {
 
 
 function submitForm(form, redirect) {
-	var result = '';
+	var result = '';	
 	
+	formData = new FormData();
+	params = $( form ).serializeArray();
+	
+    $.each(params, function(i, val) {
+        formData.append(val.name, val.value);
+    });
+
+    // wenn es ein file upload gibt
+	if ($('[name="uploadFile"]').length > 0) {
+		files = $( form ).find('[name="uploadFile"]')[0].files;
+    
+	    $.each(files, function(i, file) {
+	        formData.append('uploadFile-' + i, file);
+	    });
+	}
+		
 	$.ajax({
 		type: "POST",
 		url: "ajaxRequest.php",
-		data: $( form ).serialize(),
+		//data: $( form ).serialize(),
+		data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
 		async: true,
 		success: function(msg) {
 			if(msg != 'ok') {

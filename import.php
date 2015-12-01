@@ -190,6 +190,8 @@ function uploadForm($func) {
 
 			$("#submit").click(function(event){
 			    event.preventDefault();
+				console.log( event.target );
+			    
 				submitForm('#upload', false);
 			});
 
@@ -240,7 +242,7 @@ function uploadForm($func) {
 		            <input type="text" class="form-control input-readonly" readonly>
 		        	<span class="input-group-btn">
 		            	<span class="btn btn-primary btn-file">
-		                        Browse&hellip; <input type="file" multiple>
+		                        Browse&hellip; <input type="file" name="uploadFile" multiple>
 		                </span>
 		            </span>
 				</div>
