@@ -29,10 +29,12 @@ if(isset($_POST['form'])) {
 	if($_POST['form'] == 'saveRennen')				{ saveRennen(); }
 	if($_POST['form'] == 'saveKlasse')				{ saveKlasse(); }
 	if($_POST['form'] == 'saveTeilnehmer')			{ saveTeilnehmer(); }
+	if($_POST['form'] == 'uploadTeilnehmer')		{ tImport(); }
+	if($_POST['form'] == 'uploadZeit')				{ zImport(); }
 }
 
 
-//phpinfo(32);
+phpinfo(32);
 
 /*
 if($_GET['func'] == 'showStartList')      { $html = showStartResult($_GET['lid']); echo $html;}

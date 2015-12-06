@@ -12,42 +12,28 @@ function import() {
 }
 
 function tImport() {
-	if(isset($_POST['submit'])) {
-
-		$filename = uploadFile();
-		$lines = parseFile($filename);
-		//		echo "<pre>";
-		//		print_r($lines);
-		//		echo "</pre>";
-		$html = tUpdateDB($lines);
-
-	} else {
-		$html = uploadForm();
-	}
-	return table("Teilnehmerliste importieren", $html);
+	$filename = uploadFile();
+	$lines = parseFile($filename);
+	//		echo "<pre>";
+	//		print_r($lines);
+	//		echo "</pre>";
+	tUpdateDB($lines);
 }
 
 function zImport() {
-	if(isset($_POST['submit'])) {
-
-		$filename = uploadFile();
-		$lines = parseFile($filename);
-		//		echo "<pre>";
-		//		print_r($lines);
-		//		echo "</pre>";
-		$html = zUpdateDB($lines);
-
-	} else {
-		$html = uploadForm();
-	}
-	return table("Zeit importieren", $html);
+	$filename = uploadFile();
+	$lines = parseFile($filename);
+	//		echo "<pre>";
+	//		print_r($lines);
+	//		echo "</pre>";
+	zUpdateDB($lines);
 }
 
 function uploadFile() {
 	$uploaddir = 'upload/';
-	$uploadfile = $uploaddir.basename($_FILES['userfile']['name']);
+	$uploadfile = $uploaddir.basename($_FILES['uploadFile-0']['name']);
 
-	if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+	if (!move_uploaded_file($_FILES['uploadFile-0']['tmp_name'], $uploadfile)) {
 		echo "uploadError"; die;
 	}
 	return $uploadfile;
@@ -214,10 +200,15 @@ function uploadForm($func) {
 
 
 <?php if ($func == "teilnehmer")	{ echo	"<h3>Teilnehmerliste einlesen</h3>"; } ?>
-<?php if ($func == "zeit") 		{ echo	"<h3>Zeitliste einlesen</h3>"; } ?>		
+<?php if ($func == "zeit") 		{ echo	"<h3>Zeitliste einlesen</h3>"; } ?>
+
+<?php  if ($func == "teilnehmer")	{ $form = "uploadTeilnehmer"; } ?>
+<?php  if ($func == "zeit")		 	{ $form = "uploadZeit"; } ?>
 
 	<div class="alert alert-danger hidden col-sm-offset-3 col-sm-6" id="alert" role="alert"></div>
 	<form role="form" class="form-horizontal" enctype="multipart/form-data" id="upload" name="upload">
+
+		<input type="hidden" name="form" value="<?php echo $form; ?>"></input>
 	
 		<div class="form-group">
 			<?php if ($func == "teilnehmer") { ?>
