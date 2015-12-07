@@ -113,8 +113,8 @@ function tUpdateDB($lines) {
 		}
 	}
 
-	$errMsg .= "$didIt Datensätze erfolgreich eingefügt / aktualisiert<br>\n";
-	return $errMsg;
+	$errMsg .= "$didIt Datens&aumltze erfolgreich eingef&uuml;gt / aktualisiert<br>\n";
+	echo $errMsg;
 }
 
 function zUpdateDB($lines) {
@@ -155,8 +155,8 @@ function zUpdateDB($lines) {
 		$i++;
 	}
 
-	$errMsg .= "$didIt Datensätze erfolgreich eingefügt / aktualisiert<br>\n";
-	return $errMsg;
+	$errMsg .= "$didIt Datens&aumltze erfolgreich eingef&uuml;gt / aktualisiert<br>\n";
+	echo $errMsg;
 }
 
 function uploadForm($func) {
@@ -175,9 +175,7 @@ function uploadForm($func) {
 		$(document).ready( function() {
 
 			$("#submit").click(function(event){
-			    event.preventDefault();
-				console.log( event.target );
-			    
+			    event.preventDefault();			    
 				submitForm('#upload', false);
 			});
 
@@ -200,7 +198,7 @@ function uploadForm($func) {
 
 
 <?php if ($func == "teilnehmer")	{ echo	"<h3>Teilnehmerliste einlesen</h3>"; } ?>
-<?php if ($func == "zeit") 		{ echo	"<h3>Zeitliste einlesen</h3>"; } ?>
+<?php if ($func == "zeit") 			{ echo	"<h3>Zeitliste einlesen</h3>"; } ?>
 
 <?php  if ($func == "teilnehmer")	{ $form = "uploadTeilnehmer"; } ?>
 <?php  if ($func == "zeit")		 	{ $form = "uploadZeit"; } ?>
@@ -251,10 +249,10 @@ function uploadForm($func) {
 	<p class="col-sm-offset-2 col-sm-8 bg-info">
 		<b>Dateiformat:</b><br>
 		<?php if ($func == "teilnehmer") { ?>
-			Die erste Zeile enthält die Spaltenüberschriften<br>
+			Die erste Zeile enth&auml;lt die Spalten&uuml;berschriften<br>
 			Veranstaltung;Rennen;Startnumer;Nachname;Vorname;Geschlecht;Jahrgang;Verein;Attribut
 		<?php } else { ?>
-			Die erste Zeile enthält die Spaltenüberschriften<br>
+			Die erste Zeile enth&auml;lt die Spalten&uuml;berschriften<br>
 			Veranstaltung;Rennen;Startnumer;Zeit (HH:MM:SS)
 		<?php } ?>
 	</p>
