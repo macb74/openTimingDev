@@ -15,7 +15,7 @@ include "startliste.php";
 include "auswertung.php";
 include "ergebnis.php";
 include "import.php";
-#include "einlaufListe.php";
+include "einlaufListe.php";
 #include "ziel.php";
 
 

@@ -158,7 +158,7 @@ function showHideRunden(id) {
 
 
 function showContent( func, param ) {
-	$( '.content-table' ).load( 'ajaxRequest.php?func=' + func + '&id=' + param );	
+	$( '.content-table' ).load( 'ajaxRequest.php?func=' + func + '&id=' + param );
 }
 
 
@@ -177,6 +177,43 @@ function doAuswertung( id ) {
 		$( '#modal-body' ).html( data );
 	});
 	
+}
+
+function checkEinlaufListe( t ) {
+	var id = $( t ).attr("id")
+	var url = 'ajaxRequest.php?func=showEinlaufListe&id=' + id
+	
+	if( t.checked ) {
+		action = '&action=add';		
+	} else {
+		action = '&action=remove';		
+	}
+	$( '.content-table' ).load( url + action );
+}
+
+
+function saveManZielzeit( t, action ) {    	
+    // Encode the String
+	if( action == 'save') {
+		var encodedTimeString = Base64.encode($('#zeit_' + $( t ).attr("id")).val());
+		var getURL = 'ajaxRequest.php?func=saveManZielzeit&time=' + encodedTimeString + '&id=' + $( t ).attr("id") + '&action=save';
+	} else {
+		var getURL = 'ajaxRequest.php?func=saveManZielzeit&time=&id=' + $( t ).attr("id") + '&action=del';		
+	}
+
+	var pageToLoad = 'ajaxRequest.php?func=showEinlaufListe&id=0&action=none';
+	var scrollTo = '#zeit_' + $( t ).attr("id");
+	var jqxhr = $.get( getURL );
+
+	jqxhr.done( function() {
+		$(".content-table").load(pageToLoad, function() {
+			$('html, body').animate({
+				scrollTop: $(scrollTo).offset().top
+				}, 100);
+			});
+		});
+
+	return false;
 }
 
 

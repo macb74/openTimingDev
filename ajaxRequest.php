@@ -21,6 +21,8 @@ if(isset($_GET['func'])) {
 	if($_GET['func'] == 'setNumOfResults')			{ setNumOfResults(); }
 	if($_GET['func'] == 'doAuswertung')				{ doAuswertung(); }
 	if($_GET['func'] == 'clearRaceId')				{ clearRaceId(); }
+	if($_GET['func'] == 'showEinlaufListe')			{ showEinlaufListe(); }
+	if($_GET['func'] == 'saveManZielzeit')			{ saveManZielzeit(); }
 }
 
 
@@ -34,20 +36,8 @@ if(isset($_POST['form'])) {
 }
 
 
-phpinfo(32);
+//phpinfo(32);
 
-/*
-if($_GET['func'] == 'showStartList')      { $html = showStartResult($_GET['lid']); echo $html;}
-if($_GET['func'] == 'showStartWithoutKl') { $html = showStartWithoutKl($_GET['lid']); echo $html;}
-if($_GET['func'] == 'showResult')         { $html = showResult($_GET['lid']); echo $html;}
-if($_GET['func'] == 'showResultM')        { $html = showResultM($_GET['lid']); echo $html;}
-if($_GET['func'] == 'showWithowtTime')    { $html = showWithowtTime($_GET['lid']); echo $html;}
-if($_GET['func'] == 'showEinlaufListe')   { $html = showEinlaufListe($_GET['lid'], $_GET['action']); echo $html;}
-if($_GET['func'] == 'saveManZielzeit')    { $html = saveManZielzeit($_GET['id'], $_GET['action'], $_GET['time']); echo $html;}
-if($_GET['func'] == 'getKlasse')          { $html = getKlasse($_GET['jg'], $_GET['sex'], $_GET['lid'], 1); echo $html;}
-if($_GET['func'] == 'showZielAnalyse')    { $html = showZielAnalyse($_GET['lid'], $_GET['start'], $_GET['duration']); echo $html;}
-if($_GET['func'] == 'saveReaderTime')     { $html = saveReaderTime($_GET['id'], $_GET['action'], $_GET['values']); echo $html;}
-*/
 
 $link->close();
 exit;

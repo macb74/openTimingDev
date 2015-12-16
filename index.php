@@ -12,7 +12,7 @@ $showContent = false;
 session_start();
 include "function.php";
 $link = connectDB();
-$allowedFunctions = array('veranstaltung', 'teilnehmer', 'auswertung', 'rennen', 'klasse', 'import');
+$allowedFunctions = array('veranstaltung', 'teilnehmer', 'auswertung', 'rennen', 'klasse', 'import', 'einlaufListe');
 
 $_GET = filterParameters($_GET);
 $_POST = filterParameters($_POST);
@@ -85,6 +85,7 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-datepicker.de.min.js"></script>
     <script src="js/opentiming.js"></script>
+    <script src="js/base64.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
@@ -127,7 +128,7 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
 							<li><a href="index.php?func=import.zeit">Zeitliste Einlesen</a></li>
 							<li><a href="#">Readerzeit manuell Bearbeiten</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Einlaufliste</a></li>
+							<li><a href="index.php?func=einlaufListe">Einlaufliste</a></li>
 							<li><a href="#">Analyse Zielzeiten</a></li>
 						</ul>
 					</li>
