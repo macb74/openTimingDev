@@ -23,6 +23,7 @@ if(isset($_GET['func'])) {
 	if($_GET['func'] == 'clearRaceId')				{ clearRaceId(); }
 	if($_GET['func'] == 'showEinlaufListe')			{ showEinlaufListe(); }
 	if($_GET['func'] == 'saveManZielzeit')			{ saveManZielzeit(); }
+	if($_GET['func'] == 'showZielAnalyse')			{ showZielAnalyse(); }
 }
 
 

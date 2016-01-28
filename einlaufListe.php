@@ -102,6 +102,7 @@ function showEinlaufListe() {
 		$rIDs = explode( ",", $_SESSION['rennenIDs']);
 		$tmptable = "tmp_".rand(100, 999);
 		
+
 		$sql = "CREATE TEMPORARY TABLE IF NOT EXISTS $tmptable (
 		`ID` bigint(20) NOT NULL DEFAULT '0',
 		`stnr` int(11) NOT NULL,
@@ -135,7 +136,7 @@ function showEinlaufListe() {
 			$i++;
 		}
 		
-		// Zielzeit für manuell gesetzte Laufzeit berechnen und eintragen
+		// Zielzeit fuer manuell gesetzte Laufzeit berechnen und eintragen
 		$sql = "select * from $tmptable where usemantime = 1";
 		$result = dbRequest($sql, 'SELECT');
 		if($result[1] > 0) {
@@ -149,11 +150,11 @@ function showEinlaufListe() {
 			}
 		}
 
- 		// um richtig sortieren zu können werden die Zeiten in der spalte manzeit zusammengefasst.
+ 		// um richtig sortieren zu koennen werden die Zeiten in der spalte manzeit zusammengefasst.
  		$sql = "update $tmptable set manzeit = zielzeit where zielzeit is not NULL and usemantime <> 2";
  		$result = dbRequest($sql, 'UPDATE');
 		
-		$sql = "SELECT * from $tmptable where zielzeit is not NULL order by manzeit, millisecond asc;";
+		$sql = "SELECT * from $tmptable where zielzeit is not NULL or usemantime = 2 order by manzeit, millisecond asc;";
 		$result = dbRequest($sql, 'SELECT');
 		
 		$html2 = "";
@@ -208,9 +209,8 @@ function showEinlaufListe() {
 				$i++;
 			}
 		}
-	
 		
-		$sql = "SELECT * from $tmptable where zielzeit is NULL";
+		$sql = "SELECT * from $tmptable where zielzeit is NULL and usemantime <> 2";
 		
 		$result = dbRequest($sql, 'SELECT');
 		

@@ -12,7 +12,7 @@ $showContent = false;
 session_start();
 include "function.php";
 $link = connectDB();
-$allowedFunctions = array('veranstaltung', 'teilnehmer', 'auswertung', 'rennen', 'klasse', 'import', 'einlaufListe');
+$allowedFunctions = array('veranstaltung', 'teilnehmer', 'auswertung', 'rennen', 'klasse', 'import', 'einlaufListe', 'ziel');
 
 $_GET = filterParameters($_GET);
 $_POST = filterParameters($_POST);
@@ -129,7 +129,7 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
 							<li><a href="#">Readerzeit manuell Bearbeiten</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="index.php?func=einlaufListe">Einlaufliste</a></li>
-							<li><a href="#">Analyse Zielzeiten</a></li>
+							<li><a href="index.php?func=ziel.analyse">Analyse Zielzeiten</a></li>
 						</ul>
 					</li>
 					<li><a href="index.php?func=auswertung"><i class="fa fa-cog"></i> Auswertung</a></li>

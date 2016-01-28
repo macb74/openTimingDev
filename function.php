@@ -16,7 +16,7 @@ include "auswertung.php";
 include "ergebnis.php";
 include "import.php";
 include "einlaufListe.php";
-#include "ziel.php";
+include "ziel.php";
 
 
 function connectDB() {

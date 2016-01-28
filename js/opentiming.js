@@ -175,8 +175,11 @@ function doAuswertung( id ) {
 	jqxhr.success(function( data ) {
 		//console.log(data);
 		$( '#modal-body' ).html( data );
+		
+		// zeige die gerade berechneten Ergebnisse
+		showContent( 'showErgebnisse', id );
 	});
-	
+		
 }
 
 function checkEinlaufListe( t ) {
@@ -216,6 +219,12 @@ function saveManZielzeit( t, action ) {
 	return false;
 }
 
+function showZielzeitAnalyse( t ) {
+	var encodedStartString = Base64.encode($('#startAnalyseTime_' + $( t ).attr("id")).val());
+	var encodedDuratonString = Base64.encode($('#duration_' + $( t ).attr("id")).val());
+	
+	$( '.content-table' ).load( 'ajaxRequest.php?func=showZielAnalyse&id=' + $( t ).attr("id") + '&start=' + encodedStartString + '&duration=' + encodedDuratonString);
+}
 
 function clearModal() {
 	var data = '<span class="text-muted">loading...</span>';
