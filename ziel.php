@@ -17,7 +17,6 @@ function ziel() {
 function zielAnalyseHeader() {
 
 	# Display Rennen
-	//$html = "";
 	$veranstaltung = $_SESSION['vID'];
 	$sql = "select * from lauf where vID = $veranstaltung order by start asc, titel;";
 	$result = dbRequest($sql, 'SELECT');
@@ -68,6 +67,7 @@ function zielAnalyseHeader() {
 	}
 
 ?>
+		</tbody>
 		</table>
 	</div>
 
@@ -175,44 +175,54 @@ function showZielAnalyse() {
 }
 
 function zielEditForm() {
-	$html = "";
-	$html .="<div class=\"vboxitem grey-bg\" >\n";
-	
-	
-	$html .="</div>\n";
-
-	return $html;
-}
-
-function showZielEditTable() {
 		
-	$html = "";
 	$sql = "SELECT * FROM zeit where vID = ".$_SESSION['vID'];
 	$result = dbRequest($sql, 'SELECT');
 	
-	$html2 = "";
-	$i=1;
+?>
+	<h3>Zieleinlauf Analyse</h3>
+	
+	<div class="table-responsive">
+	<table class="table table-striped table-vcenter">
+	<thead>
+	<tr>
+	<th>VID</th>
+	<th>LID</th>
+	<th>Stnr.</th>
+	<th>Zielzeit</th>
+	<th>Timestamp</th>
+	<th>Reader IP</th>
+	<th>Action</th>
+	</tr>
+	</thead>
+	<tbody>
+	
+<?php 
 	if($result[1] > 0) {
 		foreach ($result[0] as $row) {
 			while(strlen($row['millisecond']) < 3 ) { $row['millisecond'] = "0".$row['millisecond']; }
-				
-			if($i%2 == 0) { $html2 .= "<tr class=\"even highlight\">\n"; } else { $html2 .= "<tr class=\"odd highlight\">\n"; }
-			$html2 .= "<td align=\"left\">".$row['vID']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['lID']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['nummer']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['zeit'].".".$row['millisecond']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['TIMESTAMP']."</td>\n";
-			$html2 .= "<td align=\"left\">".$row['Reader']."</td>\n";
-			$html2 .= "<td align=\"left\"><a class=\"\" id=\"".$row['ID']."\" href=\"#\" onclick=\"javascript:saveReaderTime('id=".$row['ID']."&action=del&values=none');\"><i class=\"fa fa-times fa-lg\"></i></a></span></td>\n";
-			$html2 .= "</tr>\n";
-			$i++;
+
+?>
+		<tr>
+			<td><?php echo $row['vID']; ?></td>
+			<td><?php echo $row['lID']; ?></td>
+			<td><?php echo $row['nummer']; ?></td>
+			<td><?php echo $row['zeit'].".".$row['millisecond']; ?></td>
+			<td><?php echo $row['TIMESTAMP']; ?></td>
+			<td><?php echo $row['Reader']; ?></td>
+			<td><a id="<?php echo $row['ID']; ?>" href="#" onclick="javascript:saveReaderTime('id=<?php echo $row['ID'] ?>&action=del&values=none'); return false;"><i class="fa fa-times fa-lg"></i></a></td>
+		</tr>
+<?php 
+
 		}
 	}
 	
-	$columns = array('vID', 'lID', 'StNr.', 'Zeit', 'TIMESTAMP', 'Reader', 'Action');
-	$html .= tableList($columns, $html2, "common");
-	
-	return $html;
+?>
+	</tbody>
+	</table>
+	</div>
+<?php
+
 }
 
 function saveReaderTime($id, $action, $values) {
@@ -223,8 +233,6 @@ function saveReaderTime($id, $action, $values) {
 	if($action == 'save') {
 	
 	}
-
-	return showZielEditTable();
 }
 
 ?>

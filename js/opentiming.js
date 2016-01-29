@@ -205,14 +205,18 @@ function saveManZielzeit( t, action ) {
 	}
 
 	var pageToLoad = 'ajaxRequest.php?func=showEinlaufListe&id=0&action=none';
-	var scrollTo = '#zeit_' + $( t ).attr("id");
+	var scrollToObject = '#zeit_' + $( t ).attr("id");
+	var scrollTo = $(scrollToObject).offset().top - 50;  // 50 abziehen wegen der oberen Navigationsleiste
+
 	var jqxhr = $.get( getURL );
 
+	
 	jqxhr.done( function() {
 		$(".content-table").load(pageToLoad, function() {
 			$('html, body').animate({
-				scrollTop: $(scrollTo).offset().top
-				}, 100);
+				//scrollTop: $(scrollTo).offset().top
+				scrollTop: scrollTo
+				}, 1000);
 			});
 		});
 

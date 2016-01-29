@@ -126,7 +126,7 @@ if((stristr($_SERVER["SCRIPT_NAME"], 'test') !== FALSE) || (stristr($config['dbn
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-clock-o"></i> Zeit <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="index.php?func=import.zeit">Zeitliste Einlesen</a></li>
-							<li><a href="#">Readerzeit manuell Bearbeiten</a></li>
+							<li><a href="index.php?func=ziel.edit">Readerzeit manuell Bearbeiten</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="index.php?func=einlaufListe">Einlaufliste</a></li>
 							<li><a href="index.php?func=ziel.analyse">Analyse Zielzeiten</a></li>
