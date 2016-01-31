@@ -194,7 +194,7 @@ function showEinlaufListe() {
 				<td><?php echo $row['lname']; ?></td>
 				<td <?php echo $sameTimeAsBefore; ?>><?php echo $laufzeit.$umt; ?></td>
 				<td><?php echo $row['stnr']; ?></td>
-				<td><input id="zeit_<?php echo $row['ID']; ?>" class="inputZielzeit" value="<?php echo $row['manzeit']; ?>">
+				<td><input id="zeit_<?php echo $row['ID']; ?>" class="input-very-small" value="<?php echo $row['manzeit']; ?>">
 				&nbsp;&nbsp;<a class="manzeit" id="<?php echo $row['ID']; ?>" onclick="javascript:saveManZielzeit( this, 'save'); return false;" href="#"><i class="fa fa-floppy-o fa-lg"></i></a>
 					
 				<?php if ($row['usemantime'] == 2 ) { ?>
@@ -233,7 +233,7 @@ function showEinlaufListe() {
 					<td><?php echo $row['lname']; ?></td>
 					<td <?php echo $sameTimeAsBefore; ?>><?php echo $laufzeit.$umt; ?></td>
 					<td><?php echo $row['stnr']; ?></td>
-					<td><input id="zeit_<?php echo $row['ID']; ?>" class="inputZielzeit" value="<?php echo $row['manzeit']; ?>">
+					<td><input id="zeit_<?php echo $row['ID']; ?>" class="input-very-small" value="<?php echo $row['manzeit']; ?>">
 					&nbsp;&nbsp;<a class="manzeit" id="<?php echo $row['ID']; ?>" onclick="javascript:saveManZielzeit( this, 'save'); return false;" href="#"><i class="fa fa-floppy-o fa-lg"></i></a>
 					
 					<?php if ($row['usemantime'] == 2 ) { ?>

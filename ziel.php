@@ -57,8 +57,8 @@ function zielAnalyseHeader() {
 				<td><?php echo $row['titel']." ".$subtitle." (".$anzTeilnehmer.")"; ?></td>
 				<td><?php echo $row['untertitel']; ?></td>
 				<td><?php echo $row['start']; ?></td>
-				<td><span>Start: </span><input class="inputStartAnalyseTime" id='startAnalyseTime_<?php echo $row['ID']; ?>' value='<?php echo $row['start'] ?>'>
-					<span>Dauer: </span><input class="inputLengthAnalyseTime" id='duration_<?php echo $row['ID']; ?>' value='01:00:00'>
+				<td><span>Start: </span><input class="input-very-small" id='startAnalyseTime_<?php echo $row['ID']; ?>' value='<?php echo $row['start'] ?>'>
+					<span>Dauer: </span><input class="input-very-small" id='duration_<?php echo $row['ID']; ?>' value='01:00:00'>
 					<a id="<?php echo $row['ID']; ?>" class="zielanalyse" href="#" onclick="javascript:showZielzeitAnalyse(this); return false" >start Analyse</a>
 				</td>
 			</tr>
