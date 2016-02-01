@@ -195,8 +195,8 @@ function showEinlaufListe() {
 				<td <?php echo $sameTimeAsBefore; ?>><?php echo $laufzeit.$umt; ?></td>
 				<td><?php echo $row['stnr']; ?></td>
 				<td>
-					<div class="col-sm-4">
-						<input id="zeit_<?php echo $row['ID']; ?>" class="form-control input-very-small" value="<?php echo $row['manzeit']; ?>">
+					<div class="col-sm-5">
+						<input id="zeit_<?php echo $row['ID']; ?>" class="form-control input-sm input-very-small" value="<?php echo $row['manzeit']; ?>">
 					</div>
 					&nbsp;&nbsp;<a class="manzeit" id="<?php echo $row['ID']; ?>" onclick="javascript:saveManZielzeit( this, 'save'); return false;" href="#"><i class="fa fa-floppy-o fa-lg"></i></a>
 					
@@ -236,12 +236,15 @@ function showEinlaufListe() {
 					<td><?php echo $row['lname']; ?></td>
 					<td <?php echo $sameTimeAsBefore; ?>><?php echo $laufzeit.$umt; ?></td>
 					<td><?php echo $row['stnr']; ?></td>
-					<td><input id="zeit_<?php echo $row['ID']; ?>" class="input-very-small" value="<?php echo $row['manzeit']; ?>">
-					&nbsp;&nbsp;<a class="manzeit" id="<?php echo $row['ID']; ?>" onclick="javascript:saveManZielzeit( this, 'save'); return false;" href="#"><i class="fa fa-floppy-o fa-lg"></i></a>
+					<td>
+						<div class="col-sm-5">
+							<input id="zeit_<?php echo $row['ID']; ?>" class="form-control input-sm input-very-small" value="<?php echo $row['manzeit']; ?>">
+						</div>
+						&nbsp;&nbsp;<a class="manzeit" id="<?php echo $row['ID']; ?>" onclick="javascript:saveManZielzeit( this, 'save'); return false;" href="#"><i class="fa fa-floppy-o fa-lg"></i></a>
 					
-					<?php if ($row['usemantime'] == 2 ) { ?>
-					&nbsp;&nbsp;|&nbsp;&nbsp;<a class="setmanzeit" id="<?php echo $row['ID']; ?>" onclick="javascript:saveManZielzeit( this, 'del'); return false;" href="#"><i class="fa fa-times fa-lg"></i></a>
-					<?php } ?>	
+						<?php if ($row['usemantime'] == 2 ) { ?>
+						&nbsp;&nbsp;|&nbsp;&nbsp;<a class="setmanzeit" id="<?php echo $row['ID']; ?>" onclick="javascript:saveManZielzeit( this, 'del'); return false;" href="#"><i class="fa fa-times fa-lg"></i></a>
+						<?php } ?>
 					</td>					
 				</tr>
 				
