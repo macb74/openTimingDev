@@ -185,7 +185,31 @@ function zielEditForm() {
 	$result = dbRequest($sql, 'SELECT');
 	
 ?>
-	<h3>Zieleinlauf Analyse</h3>
+	<div class="container-fluid">
+		<div class="row">
+			<form role="form" class="form-horizontal" id="saveZielzeit" name="saveZielzeit">
+				<div class="form-group"> 
+					<label class="col-sm-offset-2 col-sm-1 control-label" for="lid">LID:</label>
+					<div class="col-sm-1">
+		    			<input class="form-control" type="text" id="lid" placeholder="">
+		    		</div>
+					<label class="col-sm-1 control-label" for="stnr">Stnr.:</label>
+					<div class="col-sm-1">
+			    		<input class="form-control" type="text" id="stnr" placeholder="">
+			    	</div>
+					<label class="col-sm-1 control-label" for="zielzeit">Zielzeit:</label>
+					<div class="col-sm-2">
+		    			<input class="form-control" type="text" id="zielzeit" placeholder="YYYY-MM-DD 00:00:00">
+					</div>
+					<div class="col-sm-1">
+						<button type="submit" id="saveZielzeit-submit" class="btn btn-success" value="save">save</button>
+			  		</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<h3>Reader Zeiten</h3>
 	
 	<div class="table-responsive">
 	<table class="table table-striped table-vcenter">

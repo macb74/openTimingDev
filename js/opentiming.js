@@ -206,16 +206,13 @@ function saveManZielzeit( t, action ) {
 
 	var pageToLoad = 'ajaxRequest.php?func=showEinlaufListe&id=0&action=none';
 	var scrollToObject = '#zeit_' + $( t ).attr("id");
-	var scrollTo = $(scrollToObject).offset().top - 50;  // 50 abziehen wegen der oberen Navigationsleiste
 
 	var jqxhr = $.get( getURL );
 
-	
 	jqxhr.done( function() {
 		$(".content-table").load(pageToLoad, function() {
 			$('html, body').animate({
-				//scrollTop: $(scrollTo).offset().top
-				scrollTop: scrollTo
+				scrollTop: $(scrollToObject).offset().top - 50
 				}, 1000);
 			});
 		});
