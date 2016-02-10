@@ -24,6 +24,7 @@ if(isset($_GET['func'])) {
 	if($_GET['func'] == 'showEinlaufListe')			{ showEinlaufListe(); }
 	if($_GET['func'] == 'saveManZielzeit')			{ saveManZielzeit(); }
 	if($_GET['func'] == 'showZielAnalyse')			{ showZielAnalyse(); }
+	if($_GET['func'] == 'deleteManReaderTime')		{ deleteManReaderTime(); }
 }
 
 
@@ -34,6 +35,7 @@ if(isset($_POST['form'])) {
 	if($_POST['form'] == 'saveTeilnehmer')			{ saveTeilnehmer(); }
 	if($_POST['form'] == 'uploadTeilnehmer')		{ tImport(); }
 	if($_POST['form'] == 'uploadZeit')				{ zImport(); }
+	if($_POST['form'] == 'saveManReaderTime')		{ saveManReaderTime(); }
 }
 
 

@@ -181,28 +181,43 @@ function showZielAnalyse() {
 
 function zielEditForm() {
 		
-	$sql = "SELECT * FROM zeit where vID = ".$_SESSION['vID'];
+	$sql = "SELECT * FROM zeit where vID = ".$_SESSION['vID']." order by zeit asc";
 	$result = dbRequest($sql, 'SELECT');
 	
 ?>
+	<script>
+		$(document).ready(function(){
+			$("#submit").click(function(event){
+			    event.preventDefault();
+			    submitForm( '#saveManReaderTime', 'index.php?func=ziel.edit' );
+			});
+		});
+		
+	</script>
+
 	<div class="container-fluid">
 		<div class="row">
-			<form role="form" class="form-horizontal" id="saveZielzeit" name="saveZielzeit">
+			<div class="alert alert-danger hidden col-sm-offset-3 col-sm-6" id="alert" role="alert"></div>
+		</div>
+		<div class="row">
+			<form role="form" class="form-horizontal" id="saveManReaderTime" name="saveManReaderTime">
+				<input type="hidden" name="form" value="saveManReaderTime">
+			
 				<div class="form-group"> 
 					<label class="col-sm-offset-2 col-sm-1 control-label" for="lid">LID:</label>
 					<div class="col-sm-1">
-		    			<input class="form-control" type="text" id="lid" placeholder="">
+		    			<input class="form-control" type="text" name='lid' id="lid" placeholder="">
 		    		</div>
 					<label class="col-sm-1 control-label" for="stnr">Stnr.:</label>
 					<div class="col-sm-1">
-			    		<input class="form-control" type="text" id="stnr" placeholder="">
+			    		<input class="form-control" type="text" name="stnr" id="stnr" placeholder="">
 			    	</div>
 					<label class="col-sm-1 control-label" for="zielzeit">Zielzeit:</label>
 					<div class="col-sm-2">
-		    			<input class="form-control" type="text" id="zielzeit" placeholder="YYYY-MM-DD 00:00:00">
+		    			<input class="form-control" type="text" name="zielzeit" id="zielzeit" placeholder="YYYY-MM-DD 00:00:00">
 					</div>
 					<div class="col-sm-1">
-						<button type="submit" id="saveZielzeit-submit" class="btn btn-success" value="save">save</button>
+						<button type="submit" id="submit" class="btn btn-success" value="save">save</button>
 			  		</div>
 				</div>
 			</form>
@@ -239,7 +254,15 @@ function zielEditForm() {
 			<td><?php echo $row['zeit'].".".$row['millisecond']; ?></td>
 			<td><?php echo $row['TIMESTAMP']; ?></td>
 			<td><?php echo $row['Reader']; ?></td>
-			<td><a id="<?php echo $row['ID']; ?>" href="#" onclick="javascript:saveReaderTime('id=<?php echo $row['ID'] ?>&action=del&values=none'); return false;"><i class="fa fa-times fa-lg"></i></a></td>
+			<td>
+				<a id="<?php echo $row['ID']; ?>" href="#" onclick="javascript:deleteManReaderTime(<?php echo $row['ID'] ?>); return false;"><i class="fa fa-times"></i></a>
+				<?php if($row['del'] == 1) { ?>
+					&nbsp;<i class="fa fa-trash"></i>
+				<?php } ?>
+				<?php if($row['Reader'] == '0.0.0.0') { ?>
+					&nbsp;<i class="fa fa-pencil"></i>
+				<?php } ?>
+			</td>
 		</tr>
 <?php 
 
@@ -254,14 +277,40 @@ function zielEditForm() {
 
 }
 
-function saveReaderTime($id, $action, $values) {
-	if($action == 'del') {
-		
+function deleteManReaderTime() {
+	$del = 0;
+	$sql = "select del from zeit where id = ".$_GET['id'];
+	$result = dbRequest($sql, 'SELECT');
+	if($result[1] > 0) {
+		foreach ($result[0] as $row) {
+			if($row['del'] == 0) {
+				$del = 1;
+			} else {
+				$del = 0;
+			}
+		}
+	}
+	
+	$sql = "update zeit set del = ".$del." where id = ".$_GET['id'];
+	$result = dbRequest($sql, 'INSERT');
+	
+	if($result[0] == true) {
+		echo "ok";
+	} else {
+		echo $result[2];
+	}
+}
+
+function saveManReaderTime() {
+	$sql = "insert into zeit (vid, lid, nummer, zeit, reader) values (".$_SESSION['vID'].", ".$_POST['lid'].", ".$_POST['stnr'].", '".$_POST['zielzeit']."', '0.0.0.0')";
+	$result = dbRequest($sql, 'INSERT');
+	
+	if($result[0] == true) {
+		echo "ok";
+	} else {
+		echo $result[2];
 	}
 
-	if($action == 'save') {
-	
-	}
 }
 
 ?>

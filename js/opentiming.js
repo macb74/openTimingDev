@@ -46,8 +46,9 @@ function submitForm(form, redirect) {
 	
     $.each(params, function(i, val) {
         formData.append(val.name, val.value);
+        console.log(val.name + ': ' + val.value);
     });
-
+    
     // wenn es ein file upload gibt
 	if ($('[name="uploadFile"]').length > 0) {
 		files = $( form ).find('[name="uploadFile"]')[0].files;
@@ -56,7 +57,7 @@ function submitForm(form, redirect) {
 	        formData.append('uploadFile-' + i, file);
 	    });
 	}
-		
+	
 	$.ajax({
 		type: "POST",
 		url: "ajaxRequest.php",
@@ -76,6 +77,7 @@ function submitForm(form, redirect) {
 					clearForm();
 				}
 			}
+			console.log(redirect);
 			if(redirect) { window.location.href = redirect; }
 		}
 	})
@@ -114,6 +116,18 @@ function deleteKlasse( id, kid ) {
 	});
 }
 
+
+function deleteManReaderTime(id) {
+	var jqxhr = $.get( 'ajaxRequest.php?func=deleteManReaderTime&id=' + id );
+	jqxhr.success(function( data ) {
+		if(data == 'ok') {
+			window.location.href = 'index.php?func=ziel.edit';
+		} else {
+			$('.alert').html(data);
+			$('.alert').removeClass('hidden');
+		}
+	});
+}
 
 function deleteFullKlasse( id ) {
 	var jqxhr = $.get( 'ajaxRequest.php?func=deleteFullKlasse&id=' + id );
@@ -231,3 +245,4 @@ function clearModal() {
 	var data = '<span class="text-muted">loading...</span>';
 	$( '#modal-body' ).html( data );
 }
+
