@@ -313,8 +313,7 @@ function showRaceList() {
 		$(document).ready(function(){
 	
 			$('[data-toggle="tooltip"]').tooltip({container: "body"});
-		
-		
+
 			$('.last-race-update').mouseenter(function(data){
 				var target = this;
 				var rid = $( this ).attr('rid');
