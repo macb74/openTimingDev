@@ -175,6 +175,7 @@ function showTeilnehmerEditForm() {
 		    if( msg == '' ) {
 			    if( form == 'next' ) {
 					submitForm('#editTeilnehmer', false);
+					$(".alert").addClass('hidden');
 			    } else {
 			    	submitForm('#editTeilnehmer', 'index.php?func=' + next);
 				}
