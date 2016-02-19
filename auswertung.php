@@ -417,6 +417,13 @@ function showRaceList() {
 								<i class="fa fa-users"></i> <i class="fa fa-file-pdf-o"></i>
 							</a>
 						</div>
+						<?php if($row['rundenrennen'] == 1) {?>
+						<div class="btn-group" role="group" aria-label="...">
+							<a class="btn btn-default btn-small-border" data-toggle="tooltip" title="PDF Rundenzeiten" href="exportRundenzeiten.php?&id=<?php echo $row['ID']; ?>" target="_new">
+								<i class="fa fa-repeat"></i> <i class="fa fa-file-pdf-o"></i>
+							</a>
+						</div>
+						<?php } ?>
 					</td>
 					<td>
 						<div class="btn-group" role="group" aria-label="...">
